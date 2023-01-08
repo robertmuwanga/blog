@@ -6,23 +6,24 @@ languagecode = "en"
 defaultcontentlanguage = "en"
 
 paginate = 20
-canonifyurls = true
+
+# canonifyurls = true
 
 pygmentsstyle = "b2"
 pygmentscodefences = true
 pygmentscodefencesguesssyntax = true
 
-disqusShortname = "yourdiscussshortname"
+# disqusShortname = "yourdiscussshortname"
 
 [params]
     author = "Robert J Muwanga"
     description = "Robert's personal website"
     keywords = "blog,developer,innovation,R,rlang"
-    info = "Husband, Father, Avid Learner"
+    info = "Husband, Father and Avid Learner of Data Driven Performance"
     avatarurl = "images/avatar.jpg"
     footercontent = ""
 
-    dateformat = "January 2, 2006"
+    # dateformat = "January 2, 2006"
 
     hideCredits = false
     hideCopyright = false
@@ -56,6 +57,7 @@ disqusShortname = "yourdiscussshortname"
   category = "categories"
   series = "series"
   tag = "tags"
+  author = "authors"
 
 [[params.social]]
     name = "Github"
@@ -73,24 +75,39 @@ disqusShortname = "yourdiscussshortname"
     weight = 4
     url = "https://www.linkedin.com/in/robertmuwanga/"
 
+# Menu links
+[[menu.main]]
+name = "About"
+weight = 1
+url = "about/"
 
-[languages]
-    [languages.en]
-        languagename = "English"
+[[menu.main]]
+name = "Blog"
+weight = 2
+url = "posts/"
 
-        [languages.en.menu]
+[[menu.main]]
+name = "Projects"
+weight = 3
+url = "projects/"
 
-            [[languages.en.menu.main]]
-            name = "About"
-            weight = 1
-            url = "about/"
-
-            [[languages.en.menu.main]]
-            name = "Blog"
-            weight = 2
-            url = "posts/"
-
-            [[languages.en.menu.main]]
-            name = "Projects"
-            weight = 3
-            url = "projects/"
+#[languages]
+#    [languages.en]
+#        languagename = "English"
+#
+#        [languages.en.menu]
+#
+#            [[languages.en.menu.main]]
+#            name = "About"
+#            weight = 1
+#            url = "about/"
+#
+#            [[languages.en.menu.main]]
+#            name = "Blog"
+#            weight = 2
+#            url = "posts/"
+#
+#            [[languages.en.menu.main]]
+#            name = "Projects"
+#            weight = 3
+#            url = "projects/"
