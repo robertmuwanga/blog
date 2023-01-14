@@ -13,6 +13,7 @@ tags:
 - hugo
 - development
 title: Getting Started with Hugo
+draft: true
 ---
 
 ## Step 1. Install Hugo
