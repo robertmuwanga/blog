@@ -1,0 +1,31 @@
+---
+title: Exploring the Gap Minder Dataset
+author: Robert Muwanga
+date: '2023-01-14'
+slug: exploring-the-gap-minder-dataset
+categories:
+  - blog
+  - R
+tags: []
+description: ''
+externalLink: ''
+series: []
+draft: true
+---
+
+## Introduction
+
+*Gapminder.org* is a non-profit organisation whose mission is to rid the world of global misconceptions. As part of its mission, 
+
+## The data
+
+```{r}
+library(tidyverse)
+library(gapminder)
+
+glimpse(gapminder)
+gapminder %>% 
+  group_by(country) %>%
+  summarize('Avg.Pop' = mean(pop))
+
+```

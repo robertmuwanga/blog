@@ -1,0 +1,61 @@
+---
+title: Exploring the Gap Minder Dataset
+author: Robert Muwanga
+date: '2023-01-14'
+slug: exploring-the-gap-minder-dataset
+categories:
+  - blog
+  - R
+tags: []
+description: ''
+externalLink: ''
+series: []
+draft: true
+---
+
+
+
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p><em>Gapminder.org</em> is a non-profit organisation whose mission is to rid the world of global misconceptions. As part of its mission,</p>
+</div>
+<div id="the-data" class="section level2">
+<h2>The data</h2>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+## ✔ ggplot2 3.4.0      ✔ purrr   1.0.1 
+## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
+## ✔ tidyr   1.2.1      ✔ stringr 1.5.0 
+## ✔ readr   2.1.3      ✔ forcats 0.5.2 
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(gapminder)
+
+glimpse(gapminder)</code></pre>
+<pre><code>## Rows: 1,704
+## Columns: 6
+## $ country   &lt;fct&gt; &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, …
+## $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, …
+## $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, …
+## $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8…
+## $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12…
+## $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, …</code></pre>
+<pre class="r"><code>gapminder %&gt;% 
+  group_by(country) %&gt;%
+  summarize(&#39;Avg.Pop&#39; = mean(pop))</code></pre>
+<pre><code>## # A tibble: 142 × 2
+##    country       Avg.Pop
+##    &lt;fct&gt;           &lt;dbl&gt;
+##  1 Afghanistan 15823715.
+##  2 Albania      2580249.
+##  3 Algeria     19875406.
+##  4 Angola       7309390.
+##  5 Argentina   28602240.
+##  6 Australia   14649312.
+##  7 Austria      7583298.
+##  8 Bahrain       373913.
+##  9 Bangladesh  90755395.
+## 10 Belgium      9725119.
+## # … with 132 more rows</code></pre>
+</div>
