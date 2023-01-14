@@ -7,6 +7,7 @@ series:
 slug: creating-a-new-theme
 tags: []
 title: Creating a New Theme
+draft: true
 ---
 
 ## Introduction

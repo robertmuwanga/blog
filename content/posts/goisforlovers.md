@@ -14,6 +14,7 @@ tags:
 - themes
 - development
 title: (Hu)go Template Primer
+draft: true
 ---
 
 Hugo uses the excellent [go][] [html/template][gohtmltemplate] library for

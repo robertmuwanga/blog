@@ -8,6 +8,7 @@ series:
 - Theme
 - Hugo
 title: Theme Demo
+draft: true
 ---
 
 ## Style Demo

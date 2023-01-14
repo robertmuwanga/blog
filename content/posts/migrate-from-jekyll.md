@@ -5,6 +5,7 @@ series:
 - Getting Started
 - Hugo
 title: Migrate to Hugo from Jekyll
+draft: true
 ---
 
 Table of Contents

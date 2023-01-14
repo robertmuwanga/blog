@@ -6,6 +6,7 @@ series:
 - Theme
 - Hugo
 title: Render LaTeX using KaTeX
+draft: true
 ---
 
 Enable katex by adding `katex = "true"` to the [front matter](https://gohugo.io/content-management/front-matter/)  
