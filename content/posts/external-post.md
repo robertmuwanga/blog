@@ -11,4 +11,5 @@ tags:
 - development
 - themes
 title: Hugo coder wiki
+draft: true
 ---
