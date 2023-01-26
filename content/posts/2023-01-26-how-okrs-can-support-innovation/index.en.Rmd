@@ -1,12 +1,17 @@
 ---
-title: How can OKRs Support Innovation Creation and Discovery?
+title: How OKRs can Support Innovation
 author: Robert Muwanga
-date: '2023-01-09'
+date: '2023-01-26'
+slug: how-okrs-can-support-innovation
+categories:
+  - blog
 tags:
   - performance management
+  - OKRs
   - innovation
-slug: okrs-support-innovation-creation-and-discovery
-draft: no
+description: ''
+externalLink: ''
+series: []
 ---
 
 A lot has been talked about when it comes to Objectives and Key Results (OKRs). Some see it as the "holy grail" to improving organisational performance, whilst others see it as "just another performance management tool". But, as a mental model, it works well in driving daily performance expectations, projects, and innovation discovery and creation.
