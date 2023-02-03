@@ -14,6 +14,8 @@ externalLink: ''
 series: []
 ---
 
+![Courtesy DeepAI image](OKR_innovation.jpg)
+
 A lot has been talked about when it comes to Objectives and Key Results (OKRs). Some see it as the "holy grail" to improving organisational performance, whilst others see it as "just another performance management tool". But, as a mental model, it works well in driving daily performance expectations, projects, and innovation discovery and creation.
 
 So, how can OKRs support innovation? Let's first understand briefly what OKRs are all about.
@@ -29,7 +31,7 @@ As a typical example, consider a company that is embarking on making its way of 
 It therefore creates a set of OKRs that can help the organisation start its journey towards this goal.
 
 | Objective    | Create the lowest carbon footprint in the consultancy industry             |
-|-------------------|-----------------------------------------------------|
+|--------------------|----------------------------------------------------|
 | Key Result 1 | Reduce the use of paper printing in its report development process by 90%. |
 | Key Result 2 | Reduce the company's energy use by 50%.                                    |
 | Key Result 3 | Use 100% reusable or recyclable material for all client events.            |
@@ -43,7 +45,7 @@ Not all organisations are the same when it comes to managing innovation. In my o
 As an example, let's assume a Fintech is looking at adding Investments as a product line and sees building a savings culture with its customers as a potential strategy to increase its liquidity for investing. It therefore has "making savings a way of life" as a company-wide objective and identifies 3 key results that will define its success:
 
 | Objective    | Make savings a way of life for its customers                                                            |
-|-------------------|-----------------------------------------------------|
+|--------------------|----------------------------------------------------|
 | Key Result 1 | Make its saving product the best performing product within 2 years in its portfolio.                    |
 | Key Result 2 | Make enrolment and use of the product as seamless as possible.                                          |
 | Key Result 3 | At least 40% of its customer base should be enrolled onto the product by the end of the financial year. |
@@ -53,7 +55,7 @@ The company's product and technology teams for this company decide to pick up on
 The product team may leverage on its design thinking approach to craft a set of key results that can enable the team identify a potentially new product for the company:
 
 | Objective    | Create a saving product that is the best offering in the company's portfolio                        |
-|-------------------|-----------------------------------------------------|
+|--------------------|----------------------------------------------------|
 | Key Result 1 | Talk to 80 new and 50 existing customers by the end of January.                                     |
 | Key Result 2 | Propose (at most) 3 pain points that could be solved by savings by the end of January.              |
 | Key Result 3 | Test at least one high-fidelity potential prototype with at least 80 customers by the end of March. |
@@ -62,7 +64,7 @@ The product team may leverage on its design thinking approach to craft a set of 
 The technology team for this company may craft OKRs aligned to the Key Result 2 as follows:
 
 | Objective    | Build technology that enables a seamless customer saving experience by end of Q4 |
-|--------------------|----------------------------------------------------|
+|---------------------|---------------------------------------------------|
 | Key Result 1 | Launch mobile app by by end of Q3.                                               |
 | Key Result 2 | Enable real-time reporting on product adoption and usage by Q3.                  |
 | Key Result 3 | Scale infrastructure to support 1,000,000 customers by the end of Q4.            |
