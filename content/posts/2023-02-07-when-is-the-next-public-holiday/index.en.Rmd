@@ -68,7 +68,7 @@ To scrape the data, we shall use a package called [**rvest**](https://rvest.tidy
 
 Let's extract the data holding the public holiday information for [Uganda](https://www.officeholidays.com/countries/uganda/2021) in 2021:
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 library(tibble)
 library(ggplot2)
 library(dplyr)
@@ -100,11 +100,11 @@ If we want to include other countries as well, we can add a second parameter to 
 
 We can then use a mapping function from the **purrr** package to iterate through the list. If you are brave, you could use the **furrr** package instead for a more parallelised experience.
 
-*BUT* keep the host of the information in mind. Too many requests too fast could bring down the site which is not only unfair but may violate the usage policies of the site.
+**BUT** do keep the host of the information in mind. Too many requests too fast could bring down the site which is not only unfair but may violate the usage policies of the site.
 
 Let's improve on our script function:
 
-```{r}
+```{r warning=FALSE, message=FALSE}
 library(purrr)
 
 # General Uniform Resource Identifier that will be customised
@@ -122,10 +122,83 @@ extract_data <- function(year = 2021, country = 'uganda') {
 years <- 2017:2024
 
 data <- map(.x = years, 
-            .f = function(year) extract_data(year = year),
-            .progress = TRUE) %>% 
+            .f = function(year) extract_data(year = year)) %>% 
   bind_rows() # Combine all the data into a single tibble
 
-data
+# And finally, let's also clean up the data as well
+
+# Import additional packages to clean up dates and column headers
+library(lubridate)
+library(janitor)
+
+data <- data %>%
+  clean_names() %>% # Clean the dataset column headers
+  mutate(date = mdy(paste(date, year))) %>% # Clean the date field
+  select(-c(type, year)) # Discard irrelevant fields
 
 ```
+
+And we are done! Here are the first holidays for each year that we captured.
+
+```{r}
+data %>% 
+  group_by(year(date)) %>% 
+  slice(1) %>% 
+  ungroup()
+
+```
+## Step 5 - What can we do with this information?
+
+We can find a number of facts with this information. As an example, you could find the *number of holidays per year*:
+
+```{r warning=FALSE}
+holidays <- data %>% 
+  group_by(year(date)) %>%
+  summarise(number_of_days = n()) %>%
+  ungroup() %>%
+  rename('year' = contains('year')) 
+
+holidays %>% 
+  ggplot(aes(x = year, y = number_of_days)) + 
+  geom_bar(
+    data = holidays %>% 
+      mutate(is_max = number_of_days == max(number_of_days)), 
+    aes(fill = is_max), 
+    stat = 'identity', 
+    show.legend = FALSE) + 
+  geom_text(data = holidays, aes(label = number_of_days), 
+            nudge_y = .5, family = 'cambria', size = 3) + 
+  theme(
+    plot.background = element_blank(),
+    panel.grid = element_blank(),
+    panel.background = element_blank(),
+    axis.line = element_blank(),
+    axis.ticks = element_blank(),
+    axis.text.y = element_blank()
+  ) + 
+  labs(
+    title = 'Number of Public Holidays',
+    subtitle = 'per year',
+    x = '',
+    y = ''
+  ) + 
+  scale_x_discrete(limits = years)
+
+```
+
+You could also find out which month each year has the largest number of days:
+
+```{r warning=FALSE, message=FALSE}
+
+data %>% 
+  group_by(year(date), month(date, label = TRUE)) %>% 
+  summarise(count = n()) %>% 
+  rename(year = contains("year"), month = contains('month')) %>% 
+  ungroup() %>% 
+  group_by(year) %>% 
+  filter(count == max(count)) %>% 
+  ungroup()
+
+```
+
+You can use that information to make your leave plans! 

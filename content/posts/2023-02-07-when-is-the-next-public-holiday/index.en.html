@@ -62,16 +62,8 @@ series: []
 <p>Let’s extract the data holding the public holiday information for <a href="https://www.officeholidays.com/countries/uganda/2021">Uganda</a> in 2021:</p>
 <pre class="r"><code>library(tibble)
 library(ggplot2)
-library(dplyr)</code></pre>
-<pre><code>## 
-## Attaching package: &#39;dplyr&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>library(tidyr)
+library(dplyr)
+library(tidyr)
 library(rvest)
 
 url &lt;- &#39;https://www.officeholidays.com/countries/uganda/2021&#39;
@@ -110,16 +102,114 @@ data &lt;- site %&gt;%
 <p>We still need to be able to scrape the data tables for the other years. To do this, we create a function that takes the year of interest and pull the public holiday table for that year.</p>
 <p>If we want to include other countries as well, we can add a second parameter to the function for country, but keep the default to one - in this case Uganda.</p>
 <p>We can then use a mapping function from the <strong>purrr</strong> package to iterate through the list. If you are brave, you could use the <strong>furrr</strong> package instead for a more parallelised experience.</p>
-<p><em>BUT</em> keep the host of the information in mind. Too many requests too fast could bring down the site which is not only unfair but may violate the usage policies of the site.</p>
+<p><strong>BUT</strong> do keep the host of the information in mind. Too many requests too fast could bring down the site which is not only unfair but may violate the usage policies of the site.</p>
 <p>Let’s improve on our script function:</p>
 <pre class="r"><code>library(purrr)
 
+# General Uniform Resource Identifier that will be customised
 uri &lt;- &#39;https://www.officeholidays.com/countries&#39;
-  
-extract_data &lt;- function(country = &#39;uganda&#39;, year = 2012) {
-  read_html(paste0(uri, &#39;/&#39;, country, &#39;/&#39;, year)) %&gt;% # Add parameters to create URL
+
+# Function to extract data using customised URL from URI.
+extract_data &lt;- function(year = 2021, country = &#39;uganda&#39;) {
+  read_html(paste0(uri, &#39;/&#39;, country, &#39;/&#39;, year, &#39;/&#39;)) %&gt;% # Add parameters to create URL
     html_element(&#39;table&#39;) %&gt;%
     html_table %&gt;%
     mutate(year = year) # Add a column of year so we know the year of reference
-}</code></pre>
+}
+
+## Extract data from the range of years.
+years &lt;- 2017:2024
+
+data &lt;- map(.x = years, 
+            .f = function(year) extract_data(year = year)) %&gt;% 
+  bind_rows() # Combine all the data into a single tibble
+
+# And finally, let&#39;s also clean up the data as well
+
+# Import additional packages to clean up dates and column headers
+library(lubridate)
+library(janitor)
+
+data &lt;- data %&gt;%
+  clean_names() %&gt;% # Clean the dataset column headers
+  mutate(date = mdy(paste(date, year))) %&gt;% # Clean the date field
+  select(-c(type, year)) # Discard irrelevant fields</code></pre>
+<p>And we are done! Here are the first holidays for each year that we captured.</p>
+<pre class="r"><code>data %&gt;% 
+  group_by(year(date)) %&gt;% 
+  slice(1) %&gt;% 
+  ungroup()</code></pre>
+<pre><code>## # A tibble: 8 × 5
+##   day       date       holiday_name   comments `year(date)`
+##   &lt;chr&gt;     &lt;date&gt;     &lt;chr&gt;          &lt;chr&gt;           &lt;dbl&gt;
+## 1 Sunday    2017-01-01 New Year&#39;s Day &quot;&quot;               2017
+## 2 Monday    2018-01-01 New Year&#39;s Day &quot;&quot;               2018
+## 3 Tuesday   2019-01-01 New Year&#39;s Day &quot;&quot;               2019
+## 4 Wednesday 2020-01-01 New Year&#39;s Day &quot;&quot;               2020
+## 5 Friday    2021-01-01 New Year&#39;s Day &quot;&quot;               2021
+## 6 Saturday  2022-01-01 New Year&#39;s Day &quot;&quot;               2022
+## 7 Sunday    2023-01-01 New Year&#39;s Day &quot;&quot;               2023
+## 8 Monday    2024-01-01 New Year&#39;s Day &quot;&quot;               2024</code></pre>
+</div>
+<div id="step-5---what-can-we-do-with-this-information" class="section level2">
+<h2>Step 5 - What can we do with this information?</h2>
+<p>We can find a number of facts with this information. As an example, you could find the <em>number of holidays per year</em>:</p>
+<pre class="r"><code>holidays &lt;- data %&gt;% 
+  group_by(year(date)) %&gt;%
+  summarise(number_of_days = n()) %&gt;%
+  ungroup() %&gt;%
+  rename(&#39;year&#39; = contains(&#39;year&#39;)) 
+
+holidays %&gt;% 
+  ggplot(aes(x = year, y = number_of_days)) + 
+  geom_bar(
+    data = holidays %&gt;% 
+      mutate(is_max = number_of_days == max(number_of_days)), 
+    aes(fill = is_max), 
+    stat = &#39;identity&#39;, 
+    show.legend = FALSE) + 
+  geom_text(data = holidays, aes(label = number_of_days), 
+            nudge_y = .5, family = &#39;cambria&#39;, size = 3) + 
+  theme(
+    plot.background = element_blank(),
+    panel.grid = element_blank(),
+    panel.background = element_blank(),
+    axis.line = element_blank(),
+    axis.ticks = element_blank(),
+    axis.text.y = element_blank()
+  ) + 
+  labs(
+    title = &#39;Number of Public Holidays&#39;,
+    subtitle = &#39;per year&#39;,
+    x = &#39;&#39;,
+    y = &#39;&#39;
+  ) + 
+  scale_x_discrete(limits = years)</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>You could also find out which month each year has the largest number of days:</p>
+<pre class="r"><code>data %&gt;% 
+  group_by(year(date), month(date, label = TRUE)) %&gt;% 
+  summarise(count = n()) %&gt;% 
+  rename(year = contains(&quot;year&quot;), month = contains(&#39;month&#39;)) %&gt;% 
+  ungroup() %&gt;% 
+  group_by(year) %&gt;% 
+  filter(count == max(count)) %&gt;% 
+  ungroup()</code></pre>
+<pre><code>## # A tibble: 13 × 3
+##     year month count
+##    &lt;dbl&gt; &lt;ord&gt; &lt;int&gt;
+##  1  2017 Jun       3
+##  2  2018 Jun       3
+##  3  2019 Jun       3
+##  4  2020 Jan       2
+##  5  2020 Apr       2
+##  6  2020 May       2
+##  7  2020 Jun       2
+##  8  2020 Dec       2
+##  9  2021 Jan       4
+## 10  2022 Apr       3
+## 11  2023 Apr       3
+## 12  2023 Jun       3
+## 13  2024 Jun       3</code></pre>
+<p>You can use that information to make your leave plans!</p>
 </div>
