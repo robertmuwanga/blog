@@ -1,0 +1,125 @@
+---
+title: When is the next public holiday?
+author: Robert Muwanga
+date: '2023-02-07'
+slug: when-is-the-next-public-holiday
+categories:
+  - blog
+  - R
+tags:
+  - webscraping
+description: ''
+draft: yes
+externalLink: ''
+series: []
+---
+
+
+
+<p>The other day I was asked about public holidays in my home country - and if you didn’t know, I am from Uganda. So this question got me thinking that it would make for a good post to practice how I could scrape the information I need to answer this question.</p>
+<div id="step-0---what-do-you-need" class="section level2">
+<h2>Step 0 - What do you need?</h2>
+<p>For this exercise, you will need to install R, Rstudio (or any other text editor that you prefer to use) and the following packages:</p>
+<ul>
+<li><p><strong>tibble</strong>, for storing data in a tabular format.</p></li>
+<li><p><strong>dplyr</strong>, for data manipulation.</p></li>
+<li><p><strong>ggplot2</strong>, for data visualisation.</p></li>
+<li><p><strong>tidyr</strong>, for creating tidy data.</p></li>
+<li><p><strong>rvest</strong>, for harvesting data from web sites.</p></li>
+</ul>
+</div>
+<div id="step-1---where-is-the-data" class="section level2">
+<h2>Step 1 - Where is the data?</h2>
+<p>So I needed to find a site that had this information. A quick Google search brought me to <a href="https://www.officeholidays.com/">Office Holidays</a> that lists for several countries. Naturally, I looked for my own <a href="https://www.officeholidays.com/countries/uganda/">country</a> and beauty is that it has data from <strong>2017 - 2024</strong>.</p>
+<p>So, to get the public holidays for 2021, the URL would look like:</p>
+<pre class="text"><code>https://www.officeholidays.com/countries/uganda/2021</code></pre>
+<p>Going forward, we can use the following URL structure to scrape data for a particular country and year.</p>
+<pre class="text"><code>https://www.officeholidays.com/countries/{country}/{year}</code></pre>
+</div>
+<div id="step-2---how-do-we-find-the-data-to-scrape" class="section level2">
+<h2>Step 2 - How do we find the data to scrape?</h2>
+<p>To do this, we will have to understand the structure of the web page and be able to identify “where” the data sits.</p>
+<p>Let’s open up the <a href="https://www.officeholidays.com/countries/uganda/2021">Uganda</a> holiday page for 2021. We can then view the page source by right clicking anywhere on the page and selecting “View Page Source” (for this example I used Firefox but most browsers should be similar).</p>
+<div class="figure">
+<img src="view-source.png" alt="" />
+<p class="caption">Image View Page Source</p>
+</div>
+<p>Given that we are looking for a “table” of information, look through the source code to see whether you can find a similar structure. Highlighted below, we can see that the data is in a &lt;table class=“country-table”&gt; HTML tag and I have highlighted a few data points that we would like to capture as well.</p>
+<div class="figure">
+<img src="table-data.png" alt="" />
+<p class="caption">Image HTML table tags</p>
+</div>
+<p>Keep this tag in mind as we will need to pass it into R to scrape.</p>
+</div>
+<div id="step-3---lets-scrape-the-data" class="section level2">
+<h2>Step 3 - Let’s scrape the data!</h2>
+<p>To scrape the data, we shall use a package called <a href="https://rvest.tidyverse.org/"><strong>rvest</strong></a>. This package has functions that enables one to:</p>
+<ul>
+<li>Read in the HTML page.</li>
+<li>Narrow down to the specific tags or elements referencing the data.</li>
+<li>Extract the sought after data which, in our case, will be in the form of a tibble.</li>
+</ul>
+<p>Let’s extract the data holding the public holiday information for <a href="https://www.officeholidays.com/countries/uganda/2021">Uganda</a> in 2021:</p>
+<pre class="r"><code>library(tibble)
+library(ggplot2)
+library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>library(tidyr)
+library(rvest)
+
+url &lt;- &#39;https://www.officeholidays.com/countries/uganda/2021&#39;
+site &lt;- read_html(url) # Grab the HTML page
+
+data &lt;- site %&gt;%
+  rvest::html_element(&#39;table&#39;) %&gt;% # Extract the first &lt;table&gt; from the HTML page.
+  html_table</code></pre>
+<p><strong>NOTE</strong> - if you use the <code>html_elements</code> function (with an ‘s’ at the end), this will extract all the tables in document as a list of tibbles. From this, you can extract the appropriate table from the list (which would be the first in the list).</p>
+<p>We now have our dataset:</p>
+<pre class="r"><code>data</code></pre>
+<pre><code>## # A tibble: 18 × 5
+##    Day       Date   `Holiday Name`              Type             Comments       
+##    &lt;chr&gt;     &lt;chr&gt;  &lt;chr&gt;                       &lt;chr&gt;            &lt;chr&gt;          
+##  1 Friday    Jan 01 New Year&#39;s Day              National Holiday &quot;&quot;             
+##  2 Thursday  Jan 14 Public Holiday              National Holiday &quot;Voting in the…
+##  3 Friday    Jan 15 Public Holiday              National Holiday &quot;Voting in the…
+##  4 Tuesday   Jan 26 NRM Liberation Day          National Holiday &quot;&quot;             
+##  5 Tuesday   Feb 16 Archbishop Janani Luwum Day National Holiday &quot;A holiday sin…
+##  6 Monday    Mar 08 International Women&#39;s Day   National Holiday &quot;&quot;             
+##  7 Friday    Apr 02 Good Friday                 National Holiday &quot;&quot;             
+##  8 Monday    Apr 05 Easter Monday               National Holiday &quot;&quot;             
+##  9 Saturday  May 01 Labor Day                   National Holiday &quot;International…
+## 10 Wednesday May 12 Public Holiday              National Holiday &quot;&quot;             
+## 11 Thursday  May 13 Eid-Ul-Fitr                 National Holiday &quot;End of Ramada…
+## 12 Thursday  Jun 03 Martyrs&#39; Day                National Holiday &quot;&quot;             
+## 13 Wednesday Jun 09 National Heroes&#39; Day        National Holiday &quot;&quot;             
+## 14 Friday    Jun 25 Public Holiday              National Holiday &quot;&quot;             
+## 15 Tuesday   Jul 20 Eid Al Adha                 National Holiday &quot;Feast of the …
+## 16 Saturday  Oct 09 Independence Day            National Holiday &quot;&quot;             
+## 17 Saturday  Dec 25 Christmas Day               National Holiday &quot;&quot;             
+## 18 Sunday    Dec 26 Boxing Day                  National Holiday &quot;&quot;</code></pre>
+</div>
+<div id="step-4---how-might-we-improve-on-this-script" class="section level2">
+<h2>Step 4 - How might we improve on this script?</h2>
+<p>We still need to be able to scrape the data tables for the other years. To do this, we create a function that takes the year of interest and pull the public holiday table for that year.</p>
+<p>If we want to include other countries as well, we can add a second parameter to the function for country, but keep the default to one - in this case Uganda.</p>
+<p>We can then use a mapping function from the <strong>purrr</strong> package to iterate through the list. If you are brave, you could use the <strong>furrr</strong> package instead for a more parallelised experience.</p>
+<p><em>BUT</em> keep the host of the information in mind. Too many requests too fast could bring down the site which is not only unfair but may violate the usage policies of the site.</p>
+<p>Let’s improve on our script function:</p>
+<pre class="r"><code>library(purrr)
+
+uri &lt;- &#39;https://www.officeholidays.com/countries&#39;
+  
+extract_data &lt;- function(country = &#39;uganda&#39;, year = 2012) {
+  read_html(paste0(uri, &#39;/&#39;, country, &#39;/&#39;, year)) %&gt;% # Add parameters to create URL
+    html_element(&#39;table&#39;) %&gt;%
+    html_table %&gt;%
+    mutate(year = year) # Add a column of year so we know the year of reference
+}</code></pre>
+</div>
