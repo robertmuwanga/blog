@@ -211,5 +211,23 @@ holidays %&gt;%
 ## 11  2023 Apr       3
 ## 12  2023 Jun       3
 ## 13  2024 Jun       3</code></pre>
-<p>You can use that information to make your leave plans!</p>
+<p>What about days with holidays that enable a “long weekend”? If you are planning for leave, this could be helpful.</p>
+<p>For this example, let’s visualise this year (2023) in a calendar:</p>
+<pre class="r"><code>library(calendR)
+
+calendR(
+  year = &#39;2023&#39;,
+  special.days = yday(data$date), 
+  title = &#39;Public Holidays for 2023 in Uganda&#39;,
+  special.col = &#39;lightblue&#39;,
+  weeknames = c(&quot;Mo&quot;, &quot;Tu&quot;,&quot;We&quot;, &quot;Th&quot;, 
+                &quot;Fr&quot;, &quot;Sa&quot;, &quot;Su&quot;),
+  mbg.col = 3,
+  months.col = &#39;white&#39;,
+  font.style = &#39;bold&#39;,
+  orientation = &#39;landscape&#39;,
+  lty = 0
+)</code></pre>
+<p><img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p><strong>April</strong> looks like a great month to take leave with only <strong>13 working days</strong> to plan leave for!</p>
 </div>

@@ -201,4 +201,27 @@ data %>%
 
 ```
 
-You can use that information to make your leave plans! 
+What about days with holidays that enable a "long weekend"? If you are planning for leave, this could be helpful.
+
+For this example, let's visualise this year (2023) in a calendar:
+
+```{r warning=FALSE, message=FALSE}
+library(calendR)
+
+calendR(
+  year = '2023',
+  special.days = yday(data$date), 
+  title = 'Public Holidays for 2023 in Uganda',
+  special.col = 'lightblue',
+  weeknames = c("Mo", "Tu","We", "Th", 
+                "Fr", "Sa", "Su"),
+  mbg.col = 3,
+  months.col = 'white',
+  font.style = 'bold',
+  orientation = 'landscape',
+  lty = 0
+)
+
+```
+
+**April** looks like a great month to take leave with only **13 working days** to plan leave for!
