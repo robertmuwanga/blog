@@ -3,55 +3,46 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>/</loc>
-    <lastmod>2019-03-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/series/hugo/</loc>
-    <lastmod>2019-03-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/posts/</loc>
-    <lastmod>2019-03-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/2019/03/20/render-latex-using-katex/</loc>
-    <lastmod>2019-03-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/series/</loc>
-    <lastmod>2019-03-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/series/theme/</loc>
-    <lastmod>2019-03-20T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/categories/</loc>
-    <lastmod>2019-01-17T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/tags/development/</loc>
-    <lastmod>2019-01-17T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/categories/development/</loc>
-    <lastmod>2019-01-17T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/tags/hugo/</loc>
-    <lastmod>2019-01-17T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/2019/01/17/hugo-coder-wiki/</loc>
-    <lastmod>2019-01-17T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/tags/</loc>
-    <lastmod>2019-01-17T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/tags/themes/</loc>
-    <lastmod>2019-01-17T00:00:00+00:00</lastmod>
+    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/categories/blog/</loc>
-    <lastmod>2018-12-31T00:00:00+00:00</lastmod>
+    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2018/12/31/dummy/</loc>
-    <lastmod>2018-12-31T00:00:00+00:00</lastmod>
+    <loc>/categories/</loc>
+    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/i18n/</loc>
-    <lastmod>2018-12-31T00:00:00+00:00</lastmod>
+    <loc>/categories/data-cleaning/</loc>
+    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/2017/01/08/theme-demo/</loc>
-    <lastmod>2017-01-08T00:00:00+00:00</lastmod>
+    <loc>/posts/</loc>
+    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/categories/r/</loc>
+    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/2023/03/01/transposing-grouped-rows-into-alternating-columns/</loc>
+    <lastmod>2023-03-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/</loc>
+    <lastmod>2023-02-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/webscraping/</loc>
+    <lastmod>2023-02-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/2023/02/07/when-is-the-next-public-holiday/</loc>
+    <lastmod>2023-02-07T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/2023/01/26/how-okrs-can-support-innovation/</loc>
+    <lastmod>2023-01-26T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/innovation/</loc>
+    <lastmod>2023-01-26T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/okrs/</loc>
+    <lastmod>2023-01-26T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/performance-management/</loc>
+    <lastmod>2023-01-26T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/post/2015-07-23-r-rmarkdown/</loc>
     <lastmod>2015-07-23T21:13:14-05:00</lastmod>
@@ -62,41 +53,11 @@
     <loc>/post/</loc>
     <lastmod>2015-07-23T21:13:14-05:00</lastmod>
   </url><url>
-    <loc>/categories/r/</loc>
-    <lastmod>2015-07-23T21:13:14-05:00</lastmod>
-  </url><url>
     <loc>/tags/r-markdown/</loc>
     <lastmod>2015-07-23T21:13:14-05:00</lastmod>
   </url><url>
     <loc>/tags/regression/</loc>
     <lastmod>2015-07-23T21:13:14-05:00</lastmod>
-  </url><url>
-    <loc>/2014/09/28/creating-a-new-theme/</loc>
-    <lastmod>2014-09-28T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/2014/04/02/hugo-template-primer/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/series/getting-started/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/2014/04/02/getting-started-with-hugo/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/tags/go/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/tags/golang/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/categories/golang/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/tags/templates/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/2014/03/10/migrate-to-hugo-from-jekyll/</loc>
-    <lastmod>2014-03-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/about/</loc>
   </url><url>
@@ -105,5 +66,7 @@
     <loc>/contact/</loc>
   </url><url>
     <loc>/resume/</loc>
+  </url><url>
+    <loc>/series/</loc>
   </url>
 </urlset>

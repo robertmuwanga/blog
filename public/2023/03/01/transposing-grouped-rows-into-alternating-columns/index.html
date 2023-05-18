@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Robert J Muwanga">
+    <meta name="description" content="Robert&#39;s personal website">
+    <meta name="keywords" content="blog,developer,innovation,R,rlang">
+
+    <meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Transposing Grouped Rows into Alternating Columns"/>
+<meta name="twitter:description" content="As I was strolling through reddit and came across an interesting data cleaning request by u/PoisonDaddy29.
+Breaking down the request, it seemed like a typical transposing problem, but with an interesting twist - with grouped data.
+Let’s break this down a bit.
+This is the original sample data:
+sample_data
+And this is the expected output data: Looking at the output and working towards the original data, you will notice a couple of things:"/>
+
+    <meta property="og:title" content="Transposing Grouped Rows into Alternating Columns" />
+<meta property="og:description" content="As I was strolling through reddit and came across an interesting data cleaning request by u/PoisonDaddy29.
+Breaking down the request, it seemed like a typical transposing problem, but with an interesting twist - with grouped data.
+Let’s break this down a bit.
+This is the original sample data:
+sample_data
+And this is the expected output data: Looking at the output and working towards the original data, you will notice a couple of things:" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/2023/03/01/transposing-grouped-rows-into-alternating-columns/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-03-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-03-01T00:00:00+00:00" />
+
+
+    
+      <base href="/2023/03/01/transposing-grouped-rows-into-alternating-columns/">
+    
+    <title>
+  Transposing Grouped Rows into Alternating Columns · @rjmuwanga
+</title>
+
+    
+      <link rel="canonical" href="/2023/03/01/transposing-grouped-rows-into-alternating-columns/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="/css/coder.min.624134b411585efffadab6a91e7d0383f0d4e22ad49de3690eccbc96f528e670.css" integrity="sha256-YkE0tBFYXv/62rapHn0Dg/DU4irUneNpDsy8lvUo5nA=" crossorigin="anonymous" media="screen" />
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.109.0">
+  </head>
+
+  
+  
+  <body class="colorscheme-light">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="/">
+      @rjmuwanga
+    </a>
+    
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="/about/">About</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="/posts/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="/resume/">Resume</a>
+          </li>
+        
+      
+      
+    </ul>
+    
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Transposing Grouped Rows into Alternating Columns</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2023-03-01T00:00:00Z'>
+                March 1, 2023
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              3-minute read
+            </span>
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="/categories/r/">R</a>
+      <span class="separator">•</span>
+    <a href="/categories/data-cleaning/">data cleaning</a>
+      <span class="separator">•</span>
+    <a href="/categories/blog/">blog</a></div>
+
+          
+        </div>
+      </header>
+
+      <div>
+        
+        
+
+
+<p>As I was strolling through reddit and came across an interesting data cleaning request by <a href="https://www.reddit.com/r/datascience/comments/11edvca/data_cleaning_help_please/">u/PoisonDaddy29</a>.</p>
+<p>Breaking down the request, it seemed like a typical transposing problem, but with an interesting twist - with grouped data.</p>
+<p>Let’s break this down a bit.</p>
+<p>This is the original sample data:</p>
+<div class="figure">
+<img src="input.webp" alt="" />
+<p class="caption">sample_data</p>
+</div>
+<p>And this is the expected output data: <img src="output.webp" alt="sample_output" /></p>
+<p>Looking at the output and working towards the original data, you will notice a couple of things:</p>
+<ol style="list-style-type: decimal">
+<li><strong>The data appears to be grouped, but not aggregated.</strong></li>
+</ol>
+<p>There’s one line per ID and Type (e.g. 7807858C, INTERNET). This implies that its most likely that the data is grouped by a certain condition - which we determine in 2. below.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>The data beyond the grouped fields (ID and Type) are transposed but alternating</strong></li>
+</ol>
+<p>Looking at the first row (7807858C, INTERNET) of the output and the first two rows of the original sample dataset (7807858C, INTERNET), you will notice a pattern. Data in the first row of the original dataset occupy the “odd” columns of the output dataset, and data in the second row form the “even” columns.</p>
+<p>As an example, if we look at the data in the first two rows (7807858C, INTERNET) of the original dataset, the mapping the data in the third column (which I am assuming is perhaps the currency column) to the output dataset has “nb” is in the third column of the output data and “€” is in the fourth. Repeating this for the fourth column has “60” in the fifth column of the output dataset and “2793.95” in the sixth column.</p>
+<ol start="3" style="list-style-type: decimal">
+<li><strong>The output is only interested in a subset of the data</strong></li>
+</ol>
+<p>From the output, we can see that the final output is only interested in the first 8 columns of the original dataset - the column named “valeur”. So as part of our script, we will only subset the first 8 columns.</p>
+<p>With these few notes out of the way, we can break down the solution:</p>
+<ul>
+<li>Import the data</li>
+</ul>
+<pre class="r"><code>## Load necessary libraries ----
+
+library(dplyr)
+library(readxl)
+library(tidyr)
+library(gt)
+
+## Import dataset and clean it up a bit ----
+
+file &lt;- &#39;0ktnv66mmyka1.xlsx&#39;
+
+data &lt;- read_xlsx(file, sheet = 1)
+
+# Give column headers some generic names
+column_names &lt;- paste0(&#39;c&#39;, seq(1,ncol(data)))
+names(data) &lt;- column_names
+
+# Nest the data by the ID and Type columns (there are two rows being nested)
+nested_data &lt;- data %&gt;% 
+    select(c1:c8) %&gt;% 
+    group_by(c1, c2) %&gt;% 
+    nest() %&gt;% ungroup
+
+
+## Apply transposition for each row with nested data ----
+output &lt;- lapply(1:nrow(nested_data), function(row) {
+    sample_row &lt;- nested_data[row, ] # Extract a row
+    sample_row %&gt;% 
+        unnest(data) %&gt;% # Unnest data in row
+#        ungroup() %&gt;% 
+        select(c3:c8) %&gt;% # Select columns corresponding to the nested data (two rows)
+        lapply(FUN = function(x) t(x)) %&gt;% # Pass column and transpose
+        data.frame %&gt;% # Convert into a data frame with one row
+        bind_cols(select(sample_row, c(c1,c2)), .) # Append ID and type to data frame
+}) %&gt;% # Output makes a list of one-row data frames
+    bind_rows() # Combine all these lists row-wise to create final data output.
+
+gt::gt(output)</code></pre>
+<div id="ibatisyjsx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#ibatisyjsx .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ibatisyjsx .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ibatisyjsx .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ibatisyjsx .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ibatisyjsx .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ibatisyjsx .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ibatisyjsx .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ibatisyjsx .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ibatisyjsx .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ibatisyjsx .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ibatisyjsx .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ibatisyjsx .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ibatisyjsx .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ibatisyjsx .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ibatisyjsx .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ibatisyjsx .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ibatisyjsx .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ibatisyjsx .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ibatisyjsx .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ibatisyjsx .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ibatisyjsx .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ibatisyjsx .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ibatisyjsx .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ibatisyjsx .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ibatisyjsx .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ibatisyjsx .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ibatisyjsx .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ibatisyjsx .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ibatisyjsx .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ibatisyjsx .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ibatisyjsx .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ibatisyjsx .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ibatisyjsx .gt_left {
+  text-align: left;
+}
+
+#ibatisyjsx .gt_center {
+  text-align: center;
+}
+
+#ibatisyjsx .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ibatisyjsx .gt_font_normal {
+  font-weight: normal;
+}
+
+#ibatisyjsx .gt_font_bold {
+  font-weight: bold;
+}
+
+#ibatisyjsx .gt_font_italic {
+  font-style: italic;
+}
+
+#ibatisyjsx .gt_super {
+  font-size: 65%;
+}
+
+#ibatisyjsx .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#ibatisyjsx .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ibatisyjsx .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ibatisyjsx .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ibatisyjsx .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ibatisyjsx .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ibatisyjsx .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="c1">c1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="c2">c2</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="c3.1">c3.1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="c3.2">c3.2</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="c4.1">c4.1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="c4.2">c4.2</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="c5.1">c5.1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="c5.2">c5.2</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="c6.1">c6.1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="c6.2">c6.2</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="c7.1">c7.1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="c7.2">c7.2</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="c8.1">c8.1</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="c8.2">c8.2</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="c1" class="gt_row gt_left">7807858C</td>
+<td headers="c2" class="gt_row gt_left">INTERNET</td>
+<td headers="c3.1" class="gt_row gt_center">nb</td>
+<td headers="c3.2" class="gt_row gt_center">€</td>
+<td headers="c4.1" class="gt_row gt_right">60</td>
+<td headers="c4.2" class="gt_row gt_right">2793.95</td>
+<td headers="c5.1" class="gt_row gt_right">8</td>
+<td headers="c5.2" class="gt_row gt_right">400</td>
+<td headers="c6.1" class="gt_row gt_right">60</td>
+<td headers="c6.2" class="gt_row gt_right">0</td>
+<td headers="c7.1" class="gt_row gt_right">47</td>
+<td headers="c7.2" class="gt_row gt_right">2163.95</td>
+<td headers="c8.1" class="gt_row gt_right">60</td>
+<td headers="c8.2" class="gt_row gt_right">2793.95</td></tr>
+    <tr><td headers="c1" class="gt_row gt_left">9203297J</td>
+<td headers="c2" class="gt_row gt_left">CORMAN</td>
+<td headers="c3.1" class="gt_row gt_center">nb</td>
+<td headers="c3.2" class="gt_row gt_center">€</td>
+<td headers="c4.1" class="gt_row gt_right">7</td>
+<td headers="c4.2" class="gt_row gt_right">216.40</td>
+<td headers="c5.1" class="gt_row gt_right">0</td>
+<td headers="c5.2" class="gt_row gt_right">0</td>
+<td headers="c6.1" class="gt_row gt_right">7</td>
+<td headers="c6.2" class="gt_row gt_right">0</td>
+<td headers="c7.1" class="gt_row gt_right">4</td>
+<td headers="c7.2" class="gt_row gt_right">170.00</td>
+<td headers="c8.1" class="gt_row gt_right">7</td>
+<td headers="c8.2" class="gt_row gt_right">216.40</td></tr>
+    <tr><td headers="c1" class="gt_row gt_left">7911489V</td>
+<td headers="c2" class="gt_row gt_left">CHOCOLATE</td>
+<td headers="c3.1" class="gt_row gt_center">nb</td>
+<td headers="c3.2" class="gt_row gt_center">€</td>
+<td headers="c4.1" class="gt_row gt_right">23</td>
+<td headers="c4.2" class="gt_row gt_right">985.00</td>
+<td headers="c5.1" class="gt_row gt_right">2</td>
+<td headers="c5.2" class="gt_row gt_right">100</td>
+<td headers="c6.1" class="gt_row gt_right">23</td>
+<td headers="c6.2" class="gt_row gt_right">0</td>
+<td headers="c7.1" class="gt_row gt_right">13</td>
+<td headers="c7.2" class="gt_row gt_right">575.00</td>
+<td headers="c8.1" class="gt_row gt_right">23</td>
+<td headers="c8.2" class="gt_row gt_right">985.00</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+<p>And there you have it!</p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+      
+        © 2019 - 2023
+      
+       Robert J Muwanga 
+    
+    
+       · 
+      Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

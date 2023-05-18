@@ -6,53 +6,40 @@
     <description>Recent content on @rjmuwanga</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 20 Mar 2019 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 01 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Render LaTeX using KaTeX</title>
-      <link>/2019/03/20/render-latex-using-katex/</link>
-      <pubDate>Wed, 20 Mar 2019 00:00:00 +0000</pubDate>
+      <title>Transposing Grouped Rows into Alternating Columns</title>
+      <link>/2023/03/01/transposing-grouped-rows-into-alternating-columns/</link>
+      <pubDate>Wed, 01 Mar 2023 00:00:00 +0000</pubDate>
       
-      <guid>/2019/03/20/render-latex-using-katex/</guid>
-      <description>Enable katex by adding katex = &amp;quot;true&amp;quot; to the front matter
-+++ katex = &amp;#34;true&amp;#34; +++ If you want to enable KaTeX or MathJax for all post, add katex = ture or math = true in config.toml in [params] section.
-It&amp;rsquo;s almost a dropin alternative to the mathjax solution,you should just choose one of them.
-Inline math looks like this
-This is text with inline math $\sum_{n=1}^{\infty} 2^{-n} = 1$ This is text with inline math $\sum_{n=1}^{\infty} 2^{-n} = 1$</description>
+      <guid>/2023/03/01/transposing-grouped-rows-into-alternating-columns/</guid>
+      <description>As I was strolling through reddit and came across an interesting data cleaning request by u/PoisonDaddy29.
+Breaking down the request, it seemed like a typical transposing problem, but with an interesting twist - with grouped data.
+Let’s break this down a bit.
+This is the original sample data:
+sample_data
+And this is the expected output data: Looking at the output and working towards the original data, you will notice a couple of things:</description>
     </item>
     
     <item>
-      <title>Hugo coder wiki</title>
-      <link>/2019/01/17/hugo-coder-wiki/</link>
-      <pubDate>Thu, 17 Jan 2019 00:00:00 +0000</pubDate>
+      <title>When is the next public holiday?</title>
+      <link>/2023/02/07/when-is-the-next-public-holiday/</link>
+      <pubDate>Tue, 07 Feb 2023 00:00:00 +0000</pubDate>
       
-      <guid>/2019/01/17/hugo-coder-wiki/</guid>
-      <description></description>
+      <guid>/2023/02/07/when-is-the-next-public-holiday/</guid>
+      <description>The other day I was asked about public holidays in my home country - and if you didn’t know, I am from Uganda. So this question got me thinking that it would make for a good post to practice how I could scrape the information I need to answer this question.
+Step 0 - What do you need? For this exercise, you will need to install R, Rstudio (or any other text editor that you prefer to use) and the following packages:</description>
     </item>
     
     <item>
-      <title>Dummy</title>
-      <link>/2018/12/31/dummy/</link>
-      <pubDate>Mon, 31 Dec 2018 00:00:00 +0000</pubDate>
+      <title>How OKRs can Support Innovation</title>
+      <link>/2023/01/26/how-okrs-can-support-innovation/</link>
+      <pubDate>Thu, 26 Jan 2023 00:00:00 +0000</pubDate>
       
-      <guid>/2018/12/31/dummy/</guid>
-      <description>Nada para ver aqui!</description>
-    </item>
-    
-    <item>
-      <title>Theme Demo</title>
-      <link>/2017/01/08/theme-demo/</link>
-      <pubDate>Sun, 08 Jan 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/2017/01/08/theme-demo/</guid>
-      <description>Style Demo h1 Heading h2 Heading h3 Heading h4 Heading h5 Heading h6 Heading This is bold text
-This is bold text
-This is italic text
-This is italic text
-Deleted text
-This is text with inline math $\sum_{n=1}^{\infty} 2^{-n} = 1$ and with math blocks:
-$$ \sum_{n=1}^{\infty} 2^{-n} = 1 $$
-Heading Another heading text text text text text text Block quotes are written like so.
-They can span multiple paragraphs, if you like.</description>
+      <guid>/2023/01/26/how-okrs-can-support-innovation/</guid>
+      <description>Courtesy DeepAI image
+A lot has been talked about when it comes to Objectives and Key Results (OKRs). Some see it as the “holy grail” to improving organisational performance, whilst others see it as “just another performance management tool”. But, as a mental model, it works well in driving daily performance expectations, projects, and innovation discovery and creation.
+So, how can OKRs support innovation? Let’s first understand briefly what OKRs are all about.</description>
     </item>
     
     <item>
@@ -64,49 +51,6 @@ They can span multiple paragraphs, if you like.</description>
       <description>R MarkdownThis is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
 You can embed an R code chunk like this:
 summary(cars)## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.</description>
-    </item>
-    
-    <item>
-      <title>Creating a New Theme</title>
-      <link>/2014/09/28/creating-a-new-theme/</link>
-      <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
-      
-      <guid>/2014/09/28/creating-a-new-theme/</guid>
-      <description>Introduction This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&amp;rsquo;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&amp;rsquo;t cover using CSS to style your theme.
-We&amp;rsquo;ll start with creating a new site with a very basic template.</description>
-    </item>
-    
-    <item>
-      <title>(Hu)go Template Primer</title>
-      <link>/2014/04/02/hugo-template-primer/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>/2014/04/02/hugo-template-primer/</guid>
-      <description>Hugo uses the excellent go html/template library for its template engine. It is an extremely lightweight engine that provides a very small amount of logic. In our experience that it is just the right amount of logic to be able to create a good static website. If you have used other template systems from different languages or frameworks you will find a lot of similarities in go templates.
-This document is a brief primer on using go templates.</description>
-    </item>
-    
-    <item>
-      <title>Getting Started with Hugo</title>
-      <link>/2014/04/02/getting-started-with-hugo/</link>
-      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>/2014/04/02/getting-started-with-hugo/</guid>
-      <description>Step 1. Install Hugo Goto hugo releases and download the appropriate version for your os and architecture.
-Save it somewhere specific as we will be using it in the next step.
-More complete instructions are available at installing hugo
-Step 2. Build the Docs Hugo has its own example site which happens to also be the documentation site you are reading right now.
-Follow the following steps:
-Clone the hugo repository Go into the repo Run hugo in server mode and build the docs Open your browser to http://localhost:1313 Corresponding pseudo commands:</description>
-    </item>
-    
-    <item>
-      <title>Migrate to Hugo from Jekyll</title>
-      <link>/2014/03/10/migrate-to-hugo-from-jekyll/</link>
-      <pubDate>Mon, 10 Mar 2014 00:00:00 +0000</pubDate>
-      
-      <guid>/2014/03/10/migrate-to-hugo-from-jekyll/</guid>
-      <description>Table of Contents Move static content to static Create your Hugo configuration file Set your configuration publish folder to site Convert Jekyll templates to Hugo templates Convert Jekyll plugins to Hugo shortcodes Implementation Usage Finishing Touches Fix Content Clean Up A practical example in a diff Move static content to static Jekyll has a rule that any directory not starting with _ will be copied as-is to the _site output. Hugo keeps all static content under static.</description>
     </item>
     
     <item>
