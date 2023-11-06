@@ -6,12 +6,12 @@
     <description>Recent content on @rjmuwanga</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 01 Mar 2023 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 01 Mar 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Transposing Grouped Rows into Alternating Columns</title>
       <link>/2023/03/01/transposing-grouped-rows-into-alternating-columns/</link>
       <pubDate>Wed, 01 Mar 2023 00:00:00 +0000</pubDate>
-      
       <guid>/2023/03/01/transposing-grouped-rows-into-alternating-columns/</guid>
       <description>As I was strolling through reddit and came across an interesting data cleaning request by u/PoisonDaddy29.
 Breaking down the request, it seemed like a typical transposing problem, but with an interesting twist - with grouped data.
@@ -20,66 +20,53 @@ This is the original sample data:
 sample_data
 And this is the expected output data: Looking at the output and working towards the original data, you will notice a couple of things:</description>
     </item>
-    
     <item>
       <title>When is the next public holiday?</title>
       <link>/2023/02/07/when-is-the-next-public-holiday/</link>
       <pubDate>Tue, 07 Feb 2023 00:00:00 +0000</pubDate>
-      
       <guid>/2023/02/07/when-is-the-next-public-holiday/</guid>
       <description>The other day I was asked about public holidays in my home country - and if you didn’t know, I am from Uganda. So this question got me thinking that it would make for a good post to practice how I could scrape the information I need to answer this question.
-Step 0 - What do you need? For this exercise, you will need to install R, Rstudio (or any other text editor that you prefer to use) and the following packages:</description>
+Step 0 - What do you need?For this exercise, you will need to install R, Rstudio (or any other text editor that you prefer to use) and the following packages:</description>
     </item>
-    
     <item>
       <title>How OKRs can Support Innovation</title>
       <link>/2023/01/26/how-okrs-can-support-innovation/</link>
       <pubDate>Thu, 26 Jan 2023 00:00:00 +0000</pubDate>
-      
       <guid>/2023/01/26/how-okrs-can-support-innovation/</guid>
       <description>Courtesy DeepAI image
 A lot has been talked about when it comes to Objectives and Key Results (OKRs). Some see it as the “holy grail” to improving organisational performance, whilst others see it as “just another performance management tool”. But, as a mental model, it works well in driving daily performance expectations, projects, and innovation discovery and creation.
 So, how can OKRs support innovation? Let’s first understand briefly what OKRs are all about.</description>
     </item>
-    
     <item>
       <title>Hello R Markdown</title>
       <link>/post/2015-07-23-r-rmarkdown/</link>
       <pubDate>Thu, 23 Jul 2015 21:13:14 -0500</pubDate>
-      
       <guid>/post/2015-07-23-r-rmarkdown/</guid>
       <description>R MarkdownThis is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.
 You can embed an R code chunk like this:
 summary(cars)## speed dist ## Min. : 4.0 Min. : 2.00 ## 1st Qu.:12.0 1st Qu.: 26.00 ## Median :15.0 Median : 36.00 ## Mean :15.4 Mean : 42.98 ## 3rd Qu.</description>
     </item>
-    
     <item>
       <title>About me</title>
       <link>/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>/about/</guid>
       <description>Hi! My name is Robert.
 I have been involved in a variety of different projects that doesn&amp;rsquo;t &amp;ldquo;neatly&amp;rdquo; characterise my career - innovation, project management, business process re-engineering, data analyst, performance management and strategic &amp;ldquo;think tank&amp;rdquo; helping build departmental strategies for execution. One could think of me as a &amp;ldquo;roaming consultant&amp;rdquo;, and this non-traditional approach to work has helped me touch on many areas of business and see how many of the &amp;ldquo;cogs fit into the engine&amp;rdquo;.</description>
     </item>
-    
     <item>
       <title>Contact</title>
       <link>/contact/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>/contact/</guid>
       <description>Follow me, @johndoe.</description>
     </item>
-    
     <item>
       <title>Resume</title>
       <link>/resume/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>/resume/</guid>
       <description>Nothing to see here&amp;hellip; Move along!</description>
     </item>
-    
   </channel>
 </rss>
