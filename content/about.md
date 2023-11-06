@@ -15,6 +15,6 @@ One of my biggest passions is Data Analytics, particularly in R (though I know P
 
 I'll also be posting my random musings on other experiences that I learn along the way, and I hope this blog will be as interesting to you as it is to me.
 
-Have questions or suggestions? Feel free to [drop me a direct message on Twitter](https://twitter.com/r_muwanga).
+Have questions or suggestions? Feel free to [drop me a direct message on Twitter](https://twitter.com/rjmuwanga).
 
 Thanks for reading!
