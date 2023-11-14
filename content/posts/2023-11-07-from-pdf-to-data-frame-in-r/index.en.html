@@ -1,0 +1,96 @@
+---
+title: From PDF to Data Frame in R
+author: Robert Muwanga
+date: '2023-11-07'
+slug: from-pdf-to-data-frame-in-r
+categories:
+  - blog
+tags:
+  - data cleaning
+  - data transformation
+description: ''
+externalLink: ''
+series: []
+draft: true
+---
+
+
+
+<p>There are instances where you make a data request and you receive data in a PDF. Naturally, this presents a problem - how do you load it into R?</p>
+<p>As a simple example, I was interested in getting some data on Uganda’s education system. The data I was able to find was on Uganda’s USE and UPOLET ENLORMENT by Local Government / District that can be found <a href="https://www.education.go.ug/wp-content/uploads/2020/01/USE-UPOLET-ENLORMENT-BY-LG.pdf">here</a>.</p>
+<p>As a bit of a background on the acronyms:</p>
+<ul>
+<li><strong>USE </strong> is Uganda Secondary Education.</li>
+<li><strong>UPOLET </strong> is Uganda’s Universal Post O-Level Education and Training.</li>
+</ul>
+<p>This dataset looks at the enrollment number for each of these features by district in 2020.</p>
+<p>To explore this data, I would need to extract the table from pages 1 - 10.</p>
+<div id="how-can-we-do-this" class="section level2">
+<h2>How can we do this?</h2>
+<p>We can follow a methodical approach to solving this challenege:</p>
+<ol style="list-style-type: decimal">
+<li>Understand the dataset.</li>
+</ol>
+<p>The data is held in a table within a PDF file. This table spreads across 10 pages, with pages 1 - 5 having 4 columns and pages 6 - 10 with one column. This columns are titled:</p>
+<ul>
+<li><strong>Vote code</strong> that serves as a unique identifier for each district or area.</li>
+<li><strong>Vote Name</strong> that serves as the name of the district or area.</li>
+<li><strong>Number of schools</strong> that shows the number of schools in each district or area.</li>
+<li><strong>USE Enrolment</strong> that shows the number of students enrolled for Uganda Secondary Education.</li>
+<li><strong>UPOLET Enrolment</strong> that shows the number of students enrolled for post O-Level training.</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Identify and load the libraries that are needed</li>
+</ol>
+<p>We shall leverage on <strong>pdftools</strong> package, and the packages loaded within the <strong>tidyverse</strong> metapackage.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Load and extract the data</li>
+</ol>
+<p>The PDF file shall be obtained from the site using its URL. Loading it into R using the <strong>pdf_text</strong> function will create an R object list of 10 character strings. Each character string corresponds to the data held on the corresponding page of the PDF document.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Transform the data</li>
+</ol>
+<p>Transform each R string object, taking careful note of the following:</p>
+<p>4.1. Page 1 contains the header information of the corresponding table as the sub-string of the character string before the first *. Consider ignoring this line and transform the rest of the data into the adequate data frame.</p>
+<p>4.2. Pages 2 - 4 has data as a similar structure. Transform it and row-bind it to the data frame created in point 1 above.</p>
+<p>4.3. Page 5 has data for one area and the subsequent total of the features in the preceding pages. Take take the data of the area, drop the total and recompute it after row-binding the row to the previous data frame.</p>
+<p>4.4. Repeat steps 1 - 3 for pages 6 - 10 and perform a column-bind to the generated data frame.</p>
+<p>4.5. Rename the columns appropriately to complete the generation of the data.</p>
+<p>For simplicity, we shall create a data frame object for each page and then perform the appropriate binding at the end of the transformation process.</p>
+<p>Let’s get started!</p>
+<pre class="r"><code># Step 1 - Understand the dataset. This was done as part of the write-up by simply
+# opening and reviewing the data in a PDF viewer / web browser.
+
+# Step 2 - Load the libraries
+
+packages &lt;- c(&#39;pdftools&#39;, &#39;tidyverse&#39;)
+
+lapply(packages, function(x) library(x, character.only = TRUE))</code></pre>
+<pre><code>## Using poppler version 22.04.0</code></pre>
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.3     ✔ readr     2.1.4
+## ✔ forcats   1.0.0     ✔ stringr   1.5.0
+## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+## ✔ purrr     1.0.2     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;pdftools&quot;  &quot;stats&quot;     &quot;graphics&quot;  &quot;grDevices&quot; &quot;utils&quot;     &quot;datasets&quot; 
+## [7] &quot;methods&quot;   &quot;base&quot;     
+## 
+## [[2]]
+##  [1] &quot;lubridate&quot; &quot;forcats&quot;   &quot;stringr&quot;   &quot;dplyr&quot;     &quot;purrr&quot;     &quot;readr&quot;    
+##  [7] &quot;tidyr&quot;     &quot;tibble&quot;    &quot;ggplot2&quot;   &quot;tidyverse&quot; &quot;pdftools&quot;  &quot;stats&quot;    
+## [13] &quot;graphics&quot;  &quot;grDevices&quot; &quot;utils&quot;     &quot;datasets&quot;  &quot;methods&quot;   &quot;base&quot;</code></pre>
+<pre class="r"><code># Step 3 - Load and extract the data
+
+url &lt;- &#39;https://www.education.go.ug/wp-content/uploads/2020/01/USE-UPOLET-ENLORMENT-BY-LG.pdf&#39;
+# data &lt;- txt
+
+# Step 4 - Transform the data
+
+# page_1 &lt;- data[1] %&gt;% </code></pre>
+</div>
