@@ -15,8 +15,8 @@ pygmentscodefencesguesssyntax = true
 
 [params]
     author = "Robert J Muwanga"
-    description = "Robert's personal website"
-    keywords = "blog,developer,innovation,R,rlang"
+    description = ""
+    keywords = "blog,developer,innovation,R,rlang,datascience"
     info = "Husband, Father and Avid Learner of Data Driven Performance"
     avatarurl = "images/avatar.jpg"
     footercontent = ""

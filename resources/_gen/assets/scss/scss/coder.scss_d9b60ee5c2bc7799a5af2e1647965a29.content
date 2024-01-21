@@ -9,7 +9,7 @@ html {
 
 body {
   color: #212121;
-  background-color: #FAFAFA;
+  background-color: #f0f0f0;
   font-family: Merriweather, Georgia, serif;
   font-size: 1.6em;
   font-weight: 300;
@@ -95,13 +95,14 @@ pre {
   font-family: "Source Code Pro", "Lucida Console", monospace;
   font-size: 1.6rem;
   font-weight: 400;
-  line-height: 2.6rem;
+  line-height: normal;
   overflow-x: auto;
   margin: 0; }
   pre code {
     display: inline-block;
     background-color: inherit;
-    color: inherit; }
+    color: inherit;
+    font-size: 1.3rem; }
 
 code {
   font-family: "Source Code Pro", "Lucida Console", monospace;
@@ -331,7 +332,7 @@ img {
         padding: 0;
         max-height: 0;
         width: 100%;
-        background-color: #FAFAFA;
+        background-color: #f0f0f0;
         border-top: solid 2px #E0E0E0;
         border-bottom: solid 2px #E0E0E0;
         transition: opacity 0.25s, max-height 0.15s linear; } }

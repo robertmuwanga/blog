@@ -13,8 +13,7 @@
       <link>/2023/02/07/when-is-the-next-public-holiday/</link>
       <pubDate>Tue, 07 Feb 2023 00:00:00 +0000</pubDate>
       <guid>/2023/02/07/when-is-the-next-public-holiday/</guid>
-      <description>The other day I was asked about public holidays in my home country - and if you didn’t know, I am from Uganda. So this question got me thinking that it would make for a good post to practice how I could scrape the information I need to answer this question.
-Step 0 - What do you need?For this exercise, you will need to install R, Rstudio (or any other text editor that you prefer to use) and the following packages:</description>
+      <description>The other day I was asked about public holidays in my home country - and if you didn’t know, I am from Uganda. So this question got me thinking that it would make for a good post to practice how I could scrape the information I need to answer this question.&#xA;Step 0 - What do you need? For this exercise, you will need to install R, Rstudio (or any other text editor that you prefer to use) and the following packages:</description>
     </item>
   </channel>
 </rss>

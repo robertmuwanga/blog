@@ -113,13 +113,14 @@ pre {
   font-family: $code-font-family;
   font-size: 1.6rem;
   font-weight: 400;
-  line-height: 2.6rem;
+  line-height: normal; //2.6rem;
   overflow-x: auto;
   margin: 0;
   code {
     display: inline-block;
     background-color: inherit;
     color: inherit;
+    font-size: 1.3rem;
   }
 }
 
