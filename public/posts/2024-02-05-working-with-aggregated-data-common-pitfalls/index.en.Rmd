@@ -1,0 +1,15 @@
+---
+title: Working with Aggregated Data - Common Pitfalls
+author: ''
+date: '2024-02-05'
+slug: working-with-aggregated-data-common-pitfalls
+categories:
+  - blog
+  - R
+tags:
+  - data transformation
+description: ''
+externalLink: ''
+series: []
+draft: true
+---
