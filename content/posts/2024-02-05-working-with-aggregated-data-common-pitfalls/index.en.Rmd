@@ -20,4 +20,6 @@ There are many scenarios where this plays out but I am here to talk about workin
 
 Firstly, **what is aggregated data?**
 
+
+
 TODO: Scrape data from here https://en.wikipedia.org/wiki/World_Happiness_Report
