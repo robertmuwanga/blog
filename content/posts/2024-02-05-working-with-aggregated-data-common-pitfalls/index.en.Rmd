@@ -1,8 +1,8 @@
 ---
-title: Working with Aggregated Data - Common Pitfalls
-author: ''
+title: Crafting the Happiness Index Dataset
+author: 'Robert Muwanga'
 date: '2024-02-05'
-slug: working-with-aggregated-data-common-pitfalls
+slug: crafting-the-happiness-index-dataset
 categories:
   - blog
   - R
@@ -14,12 +14,44 @@ series: []
 draft: true
 ---
 
-As analysts, we oftentimes make the mistake of diving straight into building reports without fully appreciating the data that is given to us. We often fall into pitfalls as a result, embarrassing ourselves with analyses that others are quick to point out has errors.
+## Data Sources
 
-There are many scenarios where this plays out but I am here to talk about working with aggregated data.
+1. Wikipedia - https://en.wikipedia.org/wiki/World_Happiness_Report
+2. 
 
-Firstly, **what is aggregated data?**
+```{r load_libraries}
+pkgs <- c('tidyverse', 'rvest')
+
+for (pkg in pkgs) {
+  require(pkg, character.only = TRUE)
+}
+
+if(!all(pkgs %in% installed.packages()))
+  stop(paste('Check to ensure you have all the following libraries installed: ', pkgs, sep = ','))
+
+```
+
+--- ## Datasets from Wikipedia
+```{r help_functions}
+extract_tables <- function(x) {
+  indices <- list('2023' = 2, 
+                  '2022' = 4, 
+                  '2020' = 6, 
+                  '2019' = 8,
+                  '2018' = 10,
+                  '2017' = 12)
+  
+}
+
+```
 
 
+```{r load_data}
+
+uri <- 'https://en.wikipedia.org/wiki/World_Happiness_Report'
+data_tables <- read_html(uri) %>%
+  html_nodes('table')
+
+```
 
 TODO: Scrape data from here https://en.wikipedia.org/wiki/World_Happiness_Report
