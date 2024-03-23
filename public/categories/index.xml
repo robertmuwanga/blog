@@ -2,31 +2,45 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on @rjmuwanga</title>
-    <link>/categories/</link>
+    <link>//localhost:4321/categories/</link>
     <description>Recent content in Categories on @rjmuwanga</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 01 Mar 2023 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 05 Feb 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="//localhost:4321/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>blog</title>
-      <link>/categories/blog/</link>
-      <pubDate>Wed, 01 Mar 2023 00:00:00 +0000</pubDate>
-      <guid>/categories/blog/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>data cleaning</title>
-      <link>/categories/data-cleaning/</link>
-      <pubDate>Wed, 01 Mar 2023 00:00:00 +0000</pubDate>
-      <guid>/categories/data-cleaning/</guid>
+      <title>Blog</title>
+      <link>//localhost:4321/categories/blog/</link>
+      <pubDate>Mon, 05 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>//localhost:4321/categories/blog/</guid>
       <description></description>
     </item>
     <item>
       <title>R</title>
-      <link>/categories/r/</link>
+      <link>//localhost:4321/categories/r/</link>
+      <pubDate>Mon, 05 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>//localhost:4321/categories/r/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Data Cleaning</title>
+      <link>//localhost:4321/categories/data-cleaning/</link>
       <pubDate>Wed, 01 Mar 2023 00:00:00 +0000</pubDate>
-      <guid>/categories/r/</guid>
+      <guid>//localhost:4321/categories/data-cleaning/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Development</title>
+      <link>//localhost:4321/categories/development/</link>
+      <pubDate>Thu, 17 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>//localhost:4321/categories/development/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Golang</title>
+      <link>//localhost:4321/categories/golang/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      <guid>//localhost:4321/categories/golang/</guid>
       <description></description>
     </item>
   </channel>

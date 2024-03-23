@@ -1,21 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>innovation on @rjmuwanga</title>
-    <link>/tags/innovation/</link>
-    <description>Recent content in innovation on @rjmuwanga</description>
+    <title>Innovation on @rjmuwanga</title>
+    <link>//localhost:4321/tags/innovation/</link>
+    <description>Recent content in Innovation on @rjmuwanga</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <lastBuildDate>Thu, 26 Jan 2023 00:00:00 +0000</lastBuildDate>
-    <atom:link href="/tags/innovation/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="//localhost:4321/tags/innovation/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How OKRs can Support Innovation</title>
-      <link>/2023/01/26/how-okrs-can-support-innovation/</link>
+      <link>//localhost:4321/2023/01/26/how-okrs-can-support-innovation/</link>
       <pubDate>Thu, 26 Jan 2023 00:00:00 +0000</pubDate>
-      <guid>/2023/01/26/how-okrs-can-support-innovation/</guid>
-      <description>Courtesy DeepAI image
-A lot has been talked about when it comes to Objectives and Key Results (OKRs). Some see it as the “holy grail” to improving organisational performance, whilst others see it as “just another performance management tool”. But, as a mental model, it works well in driving daily performance expectations, projects, and innovation discovery and creation.
-So, how can OKRs support innovation? Let’s first understand briefly what OKRs are all about.</description>
+      <guid>//localhost:4321/2023/01/26/how-okrs-can-support-innovation/</guid>
+      <description>Courtesy DeepAI image&#xA;A lot has been talked about when it comes to Objectives and Key Results (OKRs). Some see it as the “holy grail” to improving organisational performance, whilst others see it as “just another performance management tool”. But, as a mental model, it works well in driving daily performance expectations, projects, and innovation discovery and creation.&#xA;So, how can OKRs support innovation? Let’s first understand briefly what OKRs are all about.</description>
     </item>
   </channel>
 </rss>
