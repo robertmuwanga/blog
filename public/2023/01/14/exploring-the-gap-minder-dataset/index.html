@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=443&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Robert J Muwanga">
+    
+    <meta name="keywords" content="blog,developer,innovation,R,rlang,datascience">
+
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Exploring the Gap Minder Dataset"/>
+<meta name="twitter:description" content="Introduction Gapminder.org is a non-profit organisation whose mission is to rid the world of global misconceptions. As part of its mission,
+The data library(tidyverse) ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ── ## ✔ ggplot2 3.4.0 ✔ purrr 1.0.1 ## ✔ tibble 3.1.8 ✔ dplyr 1.0.10 ## ✔ tidyr 1.2.1 ✔ stringr 1.5.0 ## ✔ readr 2.1.3 ✔ forcats 0.5.2 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ── ## ✖ dplyr::filter() masks stats::filter() ## ✖ dplyr::lag() masks stats::lag() library(gapminder) glimpse(gapminder) ## Rows: 1,704 ## Columns: 6 ## $ country &lt;fct&gt; &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, … ## $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, … ## $ year &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, … ## $ lifeExp &lt;dbl&gt; 28."/>
+
+    <meta property="og:title" content="Exploring the Gap Minder Dataset" />
+<meta property="og:description" content="Introduction Gapminder.org is a non-profit organisation whose mission is to rid the world of global misconceptions. As part of its mission,
+The data library(tidyverse) ## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ── ## ✔ ggplot2 3.4.0 ✔ purrr 1.0.1 ## ✔ tibble 3.1.8 ✔ dplyr 1.0.10 ## ✔ tidyr 1.2.1 ✔ stringr 1.5.0 ## ✔ readr 2.1.3 ✔ forcats 0.5.2 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ── ## ✖ dplyr::filter() masks stats::filter() ## ✖ dplyr::lag() masks stats::lag() library(gapminder) glimpse(gapminder) ## Rows: 1,704 ## Columns: 6 ## $ country &lt;fct&gt; &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, … ## $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, … ## $ year &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, … ## $ lifeExp &lt;dbl&gt; 28." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="//localhost:4321/2023/01/14/exploring-the-gap-minder-dataset/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-01-14T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-01-14T00:00:00+00:00" />
+
+
+
+    
+      <base href="//localhost:4321/2023/01/14/exploring-the-gap-minder-dataset/">
+    
+    <title>
+  Exploring the Gap Minder Dataset · @rjmuwanga
+</title>
+
+    
+      <link rel="canonical" href="//localhost:4321/2023/01/14/exploring-the-gap-minder-dataset/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="../../../../css/coder.css" media="screen">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="//localhost:4321/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="//localhost:4321/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.124.1">
+  </head>
+
+  
+  
+  <body class="colorscheme-light">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="//localhost:4321/">
+      @rjmuwanga
+    </a>
+    
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="//localhost:4321/about/">About</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="//localhost:4321/posts/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="//localhost:4321/resume/">Resume</a>
+          </li>
+        
+      
+      
+    </ul>
+    
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">Exploring the Gap Minder Dataset</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2023-01-14T00:00:00Z'>
+                January 14, 2023
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              2-minute read
+            </span>
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="../../../../categories/blog/">blog</a>
+      <span class="separator">•</span>
+    <a href="../../../../categories/r/">R</a></div>
+
+          
+        </div>
+      </header>
+
+      <div>
+        
+        
+
+
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p><em>Gapminder.org</em> is a non-profit organisation whose mission is to rid the world of global misconceptions. As part of its mission,</p>
+</div>
+<div id="the-data" class="section level2">
+<h2>The data</h2>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.2 ──
+## ✔ ggplot2 3.4.0      ✔ purrr   1.0.1 
+## ✔ tibble  3.1.8      ✔ dplyr   1.0.10
+## ✔ tidyr   1.2.1      ✔ stringr 1.5.0 
+## ✔ readr   2.1.3      ✔ forcats 0.5.2 
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()</code></pre>
+<pre class="r"><code>library(gapminder)
+
+glimpse(gapminder)</code></pre>
+<pre><code>## Rows: 1,704
+## Columns: 6
+## $ country   &lt;fct&gt; &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, …
+## $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, …
+## $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, …
+## $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8…
+## $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12…
+## $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, …</code></pre>
+<pre class="r"><code>gapminder %&gt;% 
+  group_by(country) %&gt;%
+  summarize(&#39;Avg.Pop&#39; = mean(pop))</code></pre>
+<pre><code>## # A tibble: 142 × 2
+##    country       Avg.Pop
+##    &lt;fct&gt;           &lt;dbl&gt;
+##  1 Afghanistan 15823715.
+##  2 Albania      2580249.
+##  3 Algeria     19875406.
+##  4 Angola       7309390.
+##  5 Argentina   28602240.
+##  6 Australia   14649312.
+##  7 Austria      7583298.
+##  8 Bahrain       373913.
+##  9 Bangladesh  90755395.
+## 10 Belgium      9725119.
+## # … with 132 more rows</code></pre>
+</div>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+      
+        © 2019 - 2024
+      
+       Robert J Muwanga 
+    
+    
+       · 
+      Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

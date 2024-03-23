@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=443&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Robert J Muwanga">
+    
+    <meta name="keywords" content="blog,developer,innovation,R,rlang,datascience">
+
+    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content="What are XmR Charts?"/>
+<meta name="twitter:description" content="As a manager, one of your biggest challenges is being able to identify opportunities - I prefer calling it opportunities instead of “problems” - where we can improve the performance of a process under our control.
+Let’s put this into context. As a manager you may be responsible for the performance of a consistent, sequential process that involves receiving stock from suppliers:
+The delivery truck docks at the delivery point in the warehouse."/>
+
+    <meta property="og:title" content="What are XmR Charts?" />
+<meta property="og:description" content="As a manager, one of your biggest challenges is being able to identify opportunities - I prefer calling it opportunities instead of “problems” - where we can improve the performance of a process under our control.
+Let’s put this into context. As a manager you may be responsible for the performance of a consistent, sequential process that involves receiving stock from suppliers:
+The delivery truck docks at the delivery point in the warehouse." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="//localhost:4321/2023/05/18/what-are-xmr-charts/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-05-18T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-05-18T00:00:00+00:00" />
+
+
+
+    
+      <base href="//localhost:4321/2023/05/18/what-are-xmr-charts/">
+    
+    <title>
+  What are XmR Charts? · @rjmuwanga
+</title>
+
+    
+      <link rel="canonical" href="//localhost:4321/2023/05/18/what-are-xmr-charts/">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
+
+    
+      
+      
+      <link rel="stylesheet" href="../../../../css/coder.css" media="screen">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <link rel="icon" type="image/png" href="//localhost:4321/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="//localhost:4321/images/favicon-16x16.png" sizes="16x16">
+
+    <meta name="generator" content="Hugo 0.124.1">
+  </head>
+
+  
+  
+  <body class="colorscheme-light">
+    <main class="wrapper">
+      <nav class="navigation">
+  <section class="container">
+    <a class="navigation-title" href="//localhost:4321/">
+      @rjmuwanga
+    </a>
+    
+    <input type="checkbox" id="menu-toggle" />
+    <label class="menu-button float-right" for="menu-toggle"><i class="fas fa-bars"></i></label>
+    <ul class="navigation-list">
+      
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="//localhost:4321/about/">About</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="//localhost:4321/posts/">Blog</a>
+          </li>
+        
+          <li class="navigation-item">
+            <a class="navigation-link" href="//localhost:4321/resume/">Resume</a>
+          </li>
+        
+      
+      
+    </ul>
+    
+  </section>
+</nav>
+
+
+      <div class="content">
+        
+  <section class="container post">
+    <article>
+      <header>
+        <div class="post-title">
+          <h1 class="title">What are XmR Charts?</h1>
+        </div>
+        <div class="post-meta">
+          <div class="date">
+            <span class="posted-on">
+              <i class="fas fa-calendar"></i>
+              <time datetime='2023-05-18T00:00:00Z'>
+                May 18, 2023
+              </time>
+            </span>
+            <span class="reading-time">
+              <i class="fas fa-clock"></i>
+              2-minute read
+            </span>
+          </div>
+          <div class="categories">
+  <i class="fas fa-folder"></i>
+    <a href="../../../../categories/blog/">blog</a>
+      <span class="separator">•</span>
+    <a href="../../../../categories/r/">R</a></div>
+
+          <div class="tags">
+  <i class="fas fa-tag"></i>
+    <a href="../../../../tags/performance-management/">performance management</a></div>
+
+        </div>
+      </header>
+
+      <div>
+        
+        
+
+
+<p>As a manager, one of your biggest challenges is being able to identify opportunities - I prefer calling it opportunities instead of “problems” - where we can improve the performance of a process under our control.</p>
+<p>Let’s put this into context. As a manager you may be responsible for the performance of a consistent, sequential process that involves receiving stock from suppliers:</p>
+<ul>
+<li>The delivery truck docks at the delivery point in the warehouse.</li>
+<li>You confirm the stock in truck using the invoice that was sent to your email.</li>
+<li>You sign the delivery note.</li>
+<li>Your staff off-load the truck contents and systematically index, update the warehousing system, and store the physical items on the respective shelves.</li>
+<li>You physically re-confirm the stock vis-à-vis what was put in the system and sign off the process.</li>
+</ul>
+<p>I’m not an expert in this space but let’s go with this.</p>
+<p>You see the speed of execution as one of the metrics that he uses to track performance. Related to this metric, you are interested in understanding whether the process is working well consistently or improving, or whether you needs to quickly discover whether a review of the process needs to be done if its taking longer than expected.</p>
+<p>As a dedicated manager, you has been tracking the daily performance of the process and have a basic tracker that looks something like this:</p>
+
+      </div>
+
+
+      <footer>
+        
+
+
+        
+        
+        
+      </footer>
+    </article>
+
+    
+  </section>
+
+      </div>
+
+      <footer class="footer">
+  <section class="container">
+    
+    
+      
+        © 2019 - 2024
+      
+       Robert J Muwanga 
+    
+    
+       · 
+      Powered by <a href="https://gohugo.io/">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/">Coder</a>.
+    
+    
+  </section>
+</footer>
+
+    </main>
+
+    
+
+  </body>
+
+</html>

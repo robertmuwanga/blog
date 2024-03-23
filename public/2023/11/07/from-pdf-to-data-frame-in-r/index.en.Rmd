@@ -1,0 +1,151 @@
+---
+title: From PDF to Data Frame in R
+author: Robert Muwanga
+date: '2023-11-07'
+slug: from-pdf-to-data-frame-in-r
+categories:
+  - blog
+tags:
+  - data cleaning
+  - data transformation
+description: ''
+externalLink: ''
+series: []
+draft: true
+---
+
+There are instances where you make a data request and you receive data in a PDF. Naturally, this presents a problem - how do you load it into R?
+
+As a simple example, I was interested in getting some data on Uganda's education system. The data I was able to find was on Uganda's USE and UPOLET ENLORMENT by Local Government / District that can be found [here](https://www.education.go.ug/wp-content/uploads/2020/01/USE-UPOLET-ENLORMENT-BY-LG.pdf). 
+
+As a bit of a background on the acronyms:
+
+- **USE ** is Uganda Secondary Education.
+- **UPOLET ** is Uganda's Universal Post O-Level Education and Training.
+
+This dataset looks at the enrollment number for each of these features by district in 2020. 
+
+To explore this data, I would need to extract the table from pages 1 - 10. 
+
+## How can we do this?
+
+We can follow a methodical approach to solving this  challenege:
+
+1. Understand the dataset.
+
+The data is held in a table within a PDF file. This table spreads across 10 pages, with pages 1 - 5 having 4 columns and pages 6 - 10 with one column. This columns are titled:
+
+- **Vote code** that serves as a unique identifier for each district or area.
+- **Vote Name** that serves as the name of the district or area.
+- **Number of schools** that shows the number of schools in each district or area.
+- **USE Enrolment** that shows the number of students enrolled for Uganda Secondary Education.
+- **UPOLET Enrolment** that shows the number of students enrolled for post O-Level training.
+
+2. Identify and load the libraries that are needed
+
+We shall leverage on **pdftools** package, and the packages loaded within the **tidyverse** metapackage.
+
+3. Load and extract the data
+
+The PDF file shall be obtained from the site using its URL. Loading it into R using the **pdf_text** function will create an R object list of 10 character strings. Each character string corresponds to the data held on the corresponding page of the PDF document.
+
+4. Transform the data
+
+Transform each R string object, taking careful note of the following:
+
+4.1. Page 1 contains the header information of the corresponding table as the sub-string of the character string before the first *\n*. Consider ignoring this line and transform the rest of the data into the adequate data frame.
+
+4.2. Pages 2 - 4 has data as a similar structure. Transform it and row-bind it to the data frame created in point 1 above.
+
+4.3. Page 5 has data for one area and the subsequent total of the features in the preceding pages. Take take the data of the area, drop the total and recompute it after row-binding the row to the previous data frame.
+
+4.4. Repeat steps 1 - 3 for pages 6 - 10 and perform a column-bind to the generated data frame.
+
+4.5. Rename the columns appropriately to complete the generation of the data.
+
+For simplicity, we shall create a data frame object for each page and then perform the appropriate binding at the end of the transformation process.
+
+Let's get started!
+
+
+```{r}
+
+# Step 1 - Understand the dataset. This was done as part of the write-up by simply
+# opening and reviewing the data in a PDF viewer / web browser.
+
+# Step 2 - Load the libraries
+
+packages <- c('pdftools', 'tidyverse')
+
+lapply(packages, function(x) library(x, character.only = TRUE))
+
+# Step 3 - Load and extract the data
+
+url <- 'https://www.education.go.ug/wp-content/uploads/2020/01/USE-UPOLET-ENLORMENT-BY-LG.pdf'
+# data <- pdf_text(url)
+
+# Step 4 - Transform the data
+
+## Step 4.1: Let's deal with creating a data frame of the numeric features ----
+
+# Extract vote numbers from the entire PDF document.
+data_nums <- lapply(1:10, function(x) { 
+  data[x] %>% 
+    str_split('\n', simplify = TRUE) %>% 
+    str_extract_all(pattern = "[\\d]+", simplify = TRUE) %>% 
+    as_tibble()
+})
+
+# Create a data-frame with data from only the first 4 pages first.
+
+dataset <- bind_rows(data_nums[1:4]) %>% 
+  sapply(as.numeric) %>% 
+  as_tibble() %>% 
+  filter(complete.cases(.))
+
+# Add only the first row in the 5th page.
+
+dataset <- data_nums[[5]][1, 1:3] %>% 
+  sapply(as.numeric) %>% 
+  bind_rows(dataset, .)
+
+# Extract the data from the 6th to the 10th page as a new column
+
+dataset_col <- bind_rows(data_nums[6:9]) %>% # Extract pages 6 - 9 first
+  sapply(as.numeric) %>% # convert to a numeric vector
+  append(values = as.integer(data_nums[[10]][1,1])) # Append the first row of the 10th page
+
+## Step 4.2: Vote / Region feature extraction ----
+
+# Extract votes names from data. We will have to remove the headers from the 
+# first page to extract the rest of the data.
+
+data_votenames <- lapply(1:5, function(x) {
+  d <- data[x] %>% 
+    str_split('\n', simplify = TRUE) 
+  
+  d <- if(x == 1) { d[-1] } else { d }
+  
+  d %>%
+    str_extract_all(pattern = "[\\D\\s?]+", simplify = TRUE) %>% 
+    as_tibble()
+})
+
+
+
+## Now that we have managed to extract data from the different pages, let's 
+## get the vote region information into a single vector
+
+page_1 <- data_votenames[[1]]$V2 %>% 
+  str_trim %>% 
+  discard(.p = \(x) nchar(x) < 1)
+
+page_2_to_4 <- data_votenames[2:4] %>% 
+  bind_rows %>% 
+  .$V1 %>% 
+  str_trim %>% 
+  discard( .p = \(x) nchar(x) < 1)
+
+page_1_to_4 <- c(page_1, page_2_to_4, "KCCA") # We add the one entry for Page 5
+
+```
