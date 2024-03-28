@@ -1,0 +1,55 @@
+---
+title: TidyTuesday - World Heritage Sites
+author: Robert Muwanga
+date: '2024-03-23'
+slug: []
+categories:
+  - visualisations
+  - tidytuesday
+tags:
+  - tidytuesday
+description: ''
+externalLink: ''
+series: []
+draft: true
+---
+
+
+
+<p>We shall use the TidyTuesday dataset for <a href="https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-02-06/readme.md">World Heritage Sites</a> to build a couple of visualisations for this simple dataset.</p>
+<pre class="r"><code>library(tidyverse)</code></pre>
+<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 4.3.3</code></pre>
+<pre><code>## Warning: package &#39;tidyr&#39; was built under R version 4.3.3</code></pre>
+<pre><code>## Warning: package &#39;readr&#39; was built under R version 4.3.3</code></pre>
+<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 4.3.2</code></pre>
+<pre><code>## Warning: package &#39;stringr&#39; was built under R version 4.3.3</code></pre>
+<pre><code>## Warning: package &#39;lubridate&#39; was built under R version 4.3.3</code></pre>
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+## ✔ purrr     1.0.2     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<pre class="r"><code>library(janitor)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;janitor&#39;
+## 
+## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     chisq.test, fisher.test</code></pre>
+<pre class="r"><code>data &lt;- tidytuesdayR::tt_load(2024, week = 6)</code></pre>
+<pre><code>## --- Compiling #TidyTuesday Information for 2024-02-06 ----
+## --- There is 1 file available ---
+## --- Starting Download ---</code></pre>
+<pre><code>## 
+## 	Downloading file 1 of 1: `heritage.csv`</code></pre>
+<pre><code>## --- Download complete ---</code></pre>
+<pre class="r"><code>tuesdata &lt;- data$heritage %&gt;% 
+  pivot_longer(
+    cols = -country, 
+    names_to = &#39;year&#39;, 
+    values_to = &#39;heritages&#39;)</code></pre>

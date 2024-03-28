@@ -1,0 +1,34 @@
+---
+title: TidyTuesday - World Heritage Sites
+author: Robert Muwanga
+date: '2024-03-23'
+slug: []
+categories:
+  - visualisations
+  - tidytuesday
+tags:
+  - tidytuesday
+description: ''
+externalLink: ''
+series: []
+draft: true
+---
+
+We shall use the TidyTuesday dataset for [World Heritage Sites](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-02-06/readme.md) to build a couple of visualisations for this simple dataset.
+
+```{r load_data}
+
+library(tidyverse)
+library(janitor)
+
+
+data <- tidytuesdayR::tt_load(2024, week = 6)
+tuesdata <- data$heritage %>% 
+  pivot_longer(
+    cols = -country, 
+    names_to = 'year', 
+    values_to = 'heritages')
+
+```
+
+

@@ -1,0 +1,67 @@
+---
+title: Extracting multi-paged tables with R
+author: Robert Muwanga
+date: '2024-03-24'
+slug: extracting-multi-paged-tables-with-r
+categories:
+  - data importing
+  - data cleaning
+tags:
+  - data cleaning
+  - data transformation
+description: ''
+externalLink: ''
+series: []
+draft: true
+---
+
+
+
+<p>For this exercise, we shall be extracting a table from search results that often has the data in a table that spans multiple pages. Our example site will be <a href="https://myip.ms">myip.ms</a> that pulls hosting information for particular IPs or domains. It is fairly common for IT professionals and hobbyists to see which kind of websites are hosted on a particular IP or domain address.</p>
+<div id="the-exercise" class="section level2">
+<h2>The Exercise</h2>
+<p>We are interested in knowing the sub-domains / websites hosted on the same IP address as <strong>microsoft.com</strong>. So we punch this address into the “Whois Lookup” field at the top of the page and scroll to the first table with the heading <strong>Known Websites on IP - 20.70.246.20</strong>.</p>
+<p><img src="images/clipboard-1340930071.png" /></p>
+<p>We then select the hyperlink <strong>View All Records</strong> and this takes us to the full list of Known IP addresses and links.</p>
+<p><img src="images/clipboard-1512214133.png" /></p>
+<p>You will realise that the table generates 50 results at a time, with the highlighted navigation page numbers at the top (and bottom) of the table to guide you through the records. These numbers would correspond to the number in <strong>bold</strong> after <strong><em>/sites/</em></strong> in the URL as demonstrated below:</p>
+<ul>
+<li><a href="https://myip.ms/browse/sites/" class="uri">https://myip.ms/browse/sites/</a><strong>1</strong>/ipID/20.70.246.20/ipIDii/20.70.246.20</li>
+<li><a href="https://myip.ms/browse/sites/" class="uri">https://myip.ms/browse/sites/</a><strong>2</strong>/ipID/20.70.246.20/ipIDii/20.70.246.20</li>
+<li><a href="https://myip.ms/browse/sites/" class="uri">https://myip.ms/browse/sites/</a><strong>3</strong>/ipID/20.70.246.20/ipIDii/20.70.246.20</li>
+<li><a href="https://myip.ms/browse/sites/" class="uri">https://myip.ms/browse/sites/</a><strong>4</strong>/ipID/20.70.246.20/ipIDii/20.70.246.20</li>
+</ul>
+<p>This would mean that we will have to create a script that generates 14 links (as seen from the number of table pages in the previous screenshot) and iterate through each one to extract the relevant information.</p>
+<p><strong>Please note</strong> that as you do this exercise, you need to keep in mind on not to overwhelm the site with requests, that is, we should not be hitting the site with too many requests as it takes away resources from other users. Please be judicious as you go about this exercise.</p>
+<pre class="r"><code># &quot;https://myip.ms/browse/sites/1/ipID/20.70.246.20/ipIDii/20.70.246.20&quot;
+
+## We can leverage on the &#39;seq&#39; function to generate a list of numbers from 
+## 1 - 14. Each number can be passed into the &#39;paste&#39; function to create a
+## unique link.
+
+pages &lt;- sapply(seq(1,14), function(page_number) 
+  paste(&quot;https://myips.ms/browse/sites/&quot;, 
+        page_number, 
+        &quot;/ipID/20.70.246.20/ipIDii/20.70.246.20&quot;, 
+        sep = &quot;&quot;))
+
+pages</code></pre>
+<pre><code>##  [1] &quot;https://myips.ms/browse/sites/1/ipID/20.70.246.20/ipIDii/20.70.246.20&quot; 
+##  [2] &quot;https://myips.ms/browse/sites/2/ipID/20.70.246.20/ipIDii/20.70.246.20&quot; 
+##  [3] &quot;https://myips.ms/browse/sites/3/ipID/20.70.246.20/ipIDii/20.70.246.20&quot; 
+##  [4] &quot;https://myips.ms/browse/sites/4/ipID/20.70.246.20/ipIDii/20.70.246.20&quot; 
+##  [5] &quot;https://myips.ms/browse/sites/5/ipID/20.70.246.20/ipIDii/20.70.246.20&quot; 
+##  [6] &quot;https://myips.ms/browse/sites/6/ipID/20.70.246.20/ipIDii/20.70.246.20&quot; 
+##  [7] &quot;https://myips.ms/browse/sites/7/ipID/20.70.246.20/ipIDii/20.70.246.20&quot; 
+##  [8] &quot;https://myips.ms/browse/sites/8/ipID/20.70.246.20/ipIDii/20.70.246.20&quot; 
+##  [9] &quot;https://myips.ms/browse/sites/9/ipID/20.70.246.20/ipIDii/20.70.246.20&quot; 
+## [10] &quot;https://myips.ms/browse/sites/10/ipID/20.70.246.20/ipIDii/20.70.246.20&quot;
+## [11] &quot;https://myips.ms/browse/sites/11/ipID/20.70.246.20/ipIDii/20.70.246.20&quot;
+## [12] &quot;https://myips.ms/browse/sites/12/ipID/20.70.246.20/ipIDii/20.70.246.20&quot;
+## [13] &quot;https://myips.ms/browse/sites/13/ipID/20.70.246.20/ipIDii/20.70.246.20&quot;
+## [14] &quot;https://myips.ms/browse/sites/14/ipID/20.70.246.20/ipIDii/20.70.246.20&quot;</code></pre>
+<p>Now armed with the links, we can attempt to scrape the tables from the links. We will apply the <strong>Sys.sleep</strong> function to allow the script “breathe” before each page.</p>
+<pre class="r"><code>library(rvest)</code></pre>
+<pre><code>## Warning: package &#39;rvest&#39; was built under R version 4.3.3</code></pre>
+<pre class="r"><code>test_url &lt;- &quot;https://myips.ms/browse/sites/1/ipID/20.70.246.20/ipIDii/20.70.246.20&quot;</code></pre>
+</div>
