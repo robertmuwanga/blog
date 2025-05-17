@@ -2,25 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Performance Management on @rjmuwanga</title>
-    <link>//localhost:4321/tags/performance-management/</link>
+    <link>/tags/performance-management/</link>
     <description>Recent content in Performance Management on @rjmuwanga</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Thu, 18 May 2023 00:00:00 +0000</lastBuildDate>
-    <atom:link href="//localhost:4321/tags/performance-management/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>What are XmR Charts?</title>
-      <link>//localhost:4321/2023/05/18/what-are-xmr-charts/</link>
-      <pubDate>Thu, 18 May 2023 00:00:00 +0000</pubDate>
-      <guid>//localhost:4321/2023/05/18/what-are-xmr-charts/</guid>
-      <description>As a manager, one of your biggest challenges is being able to identify opportunities - I prefer calling it opportunities instead of “problems” - where we can improve the performance of a process under our control.&#xA;Let’s put this into context. As a manager you may be responsible for the performance of a consistent, sequential process that involves receiving stock from suppliers:&#xA;The delivery truck docks at the delivery point in the warehouse.</description>
-    </item>
+    <lastBuildDate>Thu, 26 Jan 2023 00:00:00 +0000</lastBuildDate>
+    <atom:link href="/tags/performance-management/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>How OKRs can Support Innovation</title>
-      <link>//localhost:4321/2023/01/26/how-okrs-can-support-innovation/</link>
+      <link>/2023/01/26/how-okrs-can-support-innovation/</link>
       <pubDate>Thu, 26 Jan 2023 00:00:00 +0000</pubDate>
-      <guid>//localhost:4321/2023/01/26/how-okrs-can-support-innovation/</guid>
-      <description>Courtesy DeepAI image&#xA;A lot has been talked about when it comes to Objectives and Key Results (OKRs). Some see it as the “holy grail” to improving organisational performance, whilst others see it as “just another performance management tool”. But, as a mental model, it works well in driving daily performance expectations, projects, and innovation discovery and creation.&#xA;So, how can OKRs support innovation? Let’s first understand briefly what OKRs are all about.</description>
+      <guid>/2023/01/26/how-okrs-can-support-innovation/</guid>
+      <description>&lt;div class=&#34;figure&#34;&gt;&#xA;&lt;img src=&#34;OKR_innovation.jpg&#34; alt=&#34;&#34; /&gt;&#xA;&lt;p class=&#34;caption&#34;&gt;Courtesy DeepAI image&lt;/p&gt;&#xA;&lt;/div&gt;&#xA;&lt;p&gt;A lot has been talked about when it comes to Objectives and Key Results (OKRs). Some see it as the “holy grail” to improving organisational performance, whilst others see it as “just another performance management tool”. But, as a mental model, it works well in driving daily performance expectations, projects, and innovation discovery and creation.&lt;/p&gt;&#xA;&lt;p&gt;So, how can OKRs support innovation? Let’s first understand briefly what OKRs are all about.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

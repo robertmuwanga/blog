@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=443&amp;path=livereload" data-no-instant defer></script>
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -9,27 +9,29 @@
     
     <meta name="keywords" content="blog,developer,innovation,R,rlang,datascience">
 
-    <meta name="twitter:card" content="summary"/><meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="&lt;!DOCTYPE html&gt; How can OKRs Support Innovation Creation and Discovery? How can OKRs Support Innovation Creation and Discovery? Robert Muwanga 2023-01-09 A lot has been talked about when it comes to Objectives and Key Results (OKRs). Some see it as the “holy grail” to improving organisational performance, whilst others see it as “just another performance management tool”. But, as a mental model, it works well in driving daily performance expectations, projects, and innovation discovery and creation."/>
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="@rjmuwanga">
+  <meta name="twitter:description" content="&lt;!DOCTYPE html&gt; Exploring the Gap Minder Dataset Exploring the Gap Minder Dataset Robert Muwanga 2023-01-14 packages &lt;- c(&#34;tidyverse&#34;, &#34;gapminder&#34;, &#34;plotly&#34;) # Include packages of interest packages_not_installed &lt;- !(packages %in% installed.packages()) if(sum(packages_not_installed) &gt; 0) { # Install missing packages install.packages( packages[packages_not_installed]) } purrr::walk(.x = packages, ~require(package = .x, character.only = TRUE)) # Load missing packages ## Loading required package: tidyverse ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ── ## ✔ dplyr 1.1.4 ✔ readr 2.1.5 ## ✔ forcats 1.0.0 ✔ stringr 1.5.1 ## ✔ ggplot2 3.5.2 ✔ tibble 3.2.1 ## ✔ lubridate 1.9.4 ✔ tidyr 1.3.1 ## ✔ purrr 1.0.4 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ── ## ✖ dplyr::filter() masks stats::filter() ## ✖ dplyr::lag() masks stats::lag() ## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors ## Loading required package: gapminder ## ## Loading required package: plotly ## ## ## Attaching package: &#39;plotly&#39; ## ## ## The following object is masked from &#39;package:ggplot2&#39;: ## ## last_plot ## ## ## The following object is masked from &#39;package:stats&#39;: ## ## filter ## ## ## The following object is masked from &#39;package:graphics&#39;: ## ## layout data(&#34;gapminder&#34;, package = &#39;gapminder&#39;) # Load the gapminder dataset Introduction Gapminder.org is a non-profit organisation whose mission is to rid the world of global misconceptions. It does this in 3 ways:">
 
-    <meta property="og:title" content="" />
-<meta property="og:description" content="&lt;!DOCTYPE html&gt; How can OKRs Support Innovation Creation and Discovery? How can OKRs Support Innovation Creation and Discovery? Robert Muwanga 2023-01-09 A lot has been talked about when it comes to Objectives and Key Results (OKRs). Some see it as the “holy grail” to improving organisational performance, whilst others see it as “just another performance management tool”. But, as a mental model, it works well in driving daily performance expectations, projects, and innovation discovery and creation." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="//localhost:4321/1/01/01/" /><meta property="article:section" content="posts" />
-
-
-
+    <meta property="og:url" content="/1/01/01/">
+  <meta property="og:site_name" content="@rjmuwanga">
+  <meta property="og:title" content="@rjmuwanga">
+  <meta property="og:description" content="&lt;!DOCTYPE html&gt; Exploring the Gap Minder Dataset Exploring the Gap Minder Dataset Robert Muwanga 2023-01-14 packages &lt;- c(&#34;tidyverse&#34;, &#34;gapminder&#34;, &#34;plotly&#34;) # Include packages of interest packages_not_installed &lt;- !(packages %in% installed.packages()) if(sum(packages_not_installed) &gt; 0) { # Install missing packages install.packages( packages[packages_not_installed]) } purrr::walk(.x = packages, ~require(package = .x, character.only = TRUE)) # Load missing packages ## Loading required package: tidyverse ## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ── ## ✔ dplyr 1.1.4 ✔ readr 2.1.5 ## ✔ forcats 1.0.0 ✔ stringr 1.5.1 ## ✔ ggplot2 3.5.2 ✔ tibble 3.2.1 ## ✔ lubridate 1.9.4 ✔ tidyr 1.3.1 ## ✔ purrr 1.0.4 ## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ── ## ✖ dplyr::filter() masks stats::filter() ## ✖ dplyr::lag() masks stats::lag() ## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors ## Loading required package: gapminder ## ## Loading required package: plotly ## ## ## Attaching package: &#39;plotly&#39; ## ## ## The following object is masked from &#39;package:ggplot2&#39;: ## ## last_plot ## ## ## The following object is masked from &#39;package:stats&#39;: ## ## filter ## ## ## The following object is masked from &#39;package:graphics&#39;: ## ## layout data(&#34;gapminder&#34;, package = &#39;gapminder&#39;) # Load the gapminder dataset Introduction Gapminder.org is a non-profit organisation whose mission is to rid the world of global misconceptions. It does this in 3 ways:">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
 
 
     
-      <base href="//localhost:4321/1/01/01/">
+      <base href="/1/01/01/">
     
     <title>
    · @rjmuwanga
 </title>
 
     
-      <link rel="canonical" href="//localhost:4321/1/01/01/">
+      <link rel="canonical" href="/1/01/01/">
     
 
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700%7CMerriweather:300,700%7CSource+Code+Pro:400,700" rel="stylesheet">
@@ -37,10 +39,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha256-l85OmPOjvil/SOvVt3HnSSjzF1TUMyT9eV0c2BzEGzU=" crossorigin="anonymous" />
 
     
-      
-      
-      <link rel="stylesheet" href="../../../css/coder.css" media="screen">
-    
 
     
 
@@ -50,12 +48,10 @@
 
     
 
-    
+    <link rel="icon" type="image/png" href="/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/images/favicon-16x16.png" sizes="16x16">
 
-    <link rel="icon" type="image/png" href="//localhost:4321/images/favicon-32x32.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="//localhost:4321/images/favicon-16x16.png" sizes="16x16">
-
-    <meta name="generator" content="Hugo 0.124.1">
+    <meta name="generator" content="Hugo 0.142.0">
   </head>
 
   
@@ -64,7 +60,7 @@
     <main class="wrapper">
       <nav class="navigation">
   <section class="container">
-    <a class="navigation-title" href="//localhost:4321/">
+    <a class="navigation-title" href="/">
       @rjmuwanga
     </a>
     
@@ -74,15 +70,15 @@
       
         
           <li class="navigation-item">
-            <a class="navigation-link" href="//localhost:4321/about/">About</a>
+            <a class="navigation-link" href="/about/">About</a>
           </li>
         
           <li class="navigation-item">
-            <a class="navigation-link" href="//localhost:4321/posts/">Blog</a>
+            <a class="navigation-link" href="/posts/">Blog</a>
           </li>
         
           <li class="navigation-item">
-            <a class="navigation-link" href="//localhost:4321/resume/">Resume</a>
+            <a class="navigation-link" href="/resume/">Resume</a>
           </li>
         
       
@@ -111,7 +107,7 @@
             </span>
             <span class="reading-time">
               <i class="fas fa-clock"></i>
-              5-minute read
+              2-minute read
             </span>
           </div>
           
@@ -134,9 +130,9 @@
 
 <meta name="author" content="Robert Muwanga" />
 
-<meta name="date" content="2023-01-09" />
+<meta name="date" content="2023-01-14" />
 
-<title>How can OKRs Support Innovation Creation and Discovery?</title>
+<title>Exploring the Gap Minder Dataset</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -422,23 +418,17 @@ overflow-y: auto;
 border: 1px solid #ddd;
 border-radius: 4px;
 }
-.tabset-dropdown > .nav-tabs > li.active:before {
-content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+content: "\e259";
 font-family: 'Glyphicons Halflings';
 display: inline-block;
 padding: 10px;
 border-right: 1px solid #ddd;
 }
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-content: "";
-border: none;
-}
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-content: "";
+content: "\e258";
 font-family: 'Glyphicons Halflings';
-display: inline-block;
-padding: 10px;
-border-right: 1px solid #ddd;
+border: none;
 }
 .tabset-dropdown > .nav-tabs > li.active {
 display: block;
@@ -479,210 +469,90 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">How can OKRs Support Innovation Creation
-and Discovery?</h1>
+<h1 class="title toc-ignore">Exploring the Gap Minder Dataset</h1>
 <h4 class="author">Robert Muwanga</h4>
-<h4 class="date">2023-01-09</h4>
+<h4 class="date">2023-01-14</h4>
 
 </div>
 
 
-<p>A lot has been talked about when it comes to Objectives and Key
-Results (OKRs). Some see it as the “holy grail” to improving
-organisational performance, whilst others see it as “just another
-performance management tool”. But, as a mental model, it works well in
-driving daily performance expectations, projects, and innovation
-discovery and creation.</p>
-<p>So, how can OKRs support innovation? Let’s first understand briefly
-what OKRs are all about.</p>
-<p>OKRs can be seen as a performance management tool, but one that
-focuses on <em>goals</em> as a means to help guide an organisation, team
-or individual <strong>align</strong> towards delivering
-<strong>measurable</strong> and <strong>impactful</strong> outcomes. As
-one would notice, the words in <strong>bold</strong> are those typically
-used as pillars of innovative teams and activities.</p>
-<blockquote>
-<p><strong>Objectives</strong> state a concrete, action-oriented and
-inspirational desired state, whilst <strong>Key Results</strong> help
-define specific, time bound, aggressive but realistic, measurable and
-verifiable targets.</p>
-</blockquote>
-<p>Let’s put it into context.</p>
-<p>As a typical example, consider a company that is embarking on making
-its way of doing business <em>sustainable and environmentally
-friendly</em>. As a consultancy company, it has recognised that its
-carbon footprint is quite high compared to other companies in its
-industry.</p>
-<p>It therefore creates a set of OKRs that can help the organisation
-start its journey towards this goal.</p>
-<table>
-<colgroup>
-<col width="26%" />
-<col width="73%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Objective</th>
-<th>Create the lowest carbon footprint in the consultancy industry</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Key Result 1</td>
-<td>Reduce the use of paper printing in its report development process
-by 90%.</td>
-</tr>
-<tr class="even">
-<td>Key Result 2</td>
-<td>Reduce the company’s energy use by 50%.</td>
-</tr>
-<tr class="odd">
-<td>Key Result 3</td>
-<td>Use 100% reusable or recyclable material for all client events.</td>
-</tr>
-</tbody>
-</table>
-<p>As we can see, the <strong>Objective</strong> is concrete,
-action-oriented and inspirational, whilst its accompanying <strong>Key
-Results</strong> are specific and aggressive, but are measurable and
-verifiable. We can assume for this example that these are for the entire
-year (time bound).</p>
-<p><strong>How about innovation?</strong></p>
-<p>Not all organisations are the same when it comes to managing
-innovation. In my opinion, innovation should be <strong>part</strong> of
-how organisations do work as opposed to a “plug-in” where it comes in
-after the fact. Innovation should be embedded <em>implicitly</em> in the
-way organisations set out their strategy and goals, but rewarded
-<em>explicitly</em> to help drive the creative culture an organisation
-strives to have. A culture of innovation expedites the speed of an
-organisation in meeting its strategic goals and allows for new
-challenges to quickly come on-board.</p>
-<p>As an example, let’s assume a Fintech is looking at adding
-Investments as a product line and sees building a savings culture with
-its customers as a potential strategy to increase its liquidity for
-investing. It therefore has “making savings a way of life” as a
-company-wide objective and identifies 3 key results that will define its
-success:</p>
-<table>
-<colgroup>
-<col width="26%" />
-<col width="73%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Objective</th>
-<th>Make savings a way of life for its customers</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Key Result 1</td>
-<td>Make its saving product the best performing product within 2 years
-in its portfolio.</td>
-</tr>
-<tr class="even">
-<td>Key Result 2</td>
-<td>Make enrolment and use of the product as seamless as possible.</td>
-</tr>
-<tr class="odd">
-<td>Key Result 3</td>
-<td>At least 40% of its customer base should be enrolled onto the
-product by the end of the financial year.</td>
-</tr>
-</tbody>
-</table>
-<p>The company’s product and technology teams for this company decide to
-pick up on this new objective and create new team objectives that feed
-into Key Results 1 and 2 respectively.</p>
-<p>The product team may leverage on its design thinking approach to
-craft a set of key results that can enable the team identify a
-potentially new product for the company:</p>
-<table>
-<colgroup>
-<col width="26%" />
-<col width="73%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Objective</th>
-<th>Create a saving product that is the best offering in the company’s
-portfolio</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Key Result 1</td>
-<td>Talk to 80 new and 50 existing customers by the end of January.</td>
-</tr>
-<tr class="even">
-<td>Key Result 2</td>
-<td>Propose (at most) 3 pain points that could be solved by savings by
-the end of January.</td>
-</tr>
-<tr class="odd">
-<td>Key Result 3</td>
-<td>Test at least one high-fidelity potential prototype with at least 80
-customers by the end of March.</td>
-</tr>
-<tr class="even">
-<td>Key Result 4</td>
-<td>Present a viable product for scaling by 15 April.</td>
-</tr>
-</tbody>
-</table>
-<p>The technology team for this company may craft OKRs aligned to the
-Key Result 2 as follows:</p>
-<table>
-<colgroup>
-<col width="27%" />
-<col width="72%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Objective</th>
-<th>Build technology that enables a seamless customer saving experience
-by end of Q4</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Key Result 1</td>
-<td>Launch mobile app by by end of Q3.</td>
-</tr>
-<tr class="even">
-<td>Key Result 2</td>
-<td>Enable real-time reporting on product adoption and usage by Q3.</td>
-</tr>
-<tr class="odd">
-<td>Key Result 3</td>
-<td>Scale infrastructure to support 1,000,000 customers by the end of
-Q4.</td>
-</tr>
-<tr class="even">
-<td>Key Result 4</td>
-<td>Ensure 100% compliance to GDPR and related data protection
-laws.</td>
-</tr>
-</tbody>
-</table>
-<p>These Key Results may be further broken down by teams within the
-technology department that may be in charge of software development,
-infrastructure support, information security and others.</p>
-<p>This is where the <strong>alignment</strong> of OKRs come into
-fruition - a pyramid of objectives and key results can be created across
-teams, each feeding into the other to ensure alignment to the overall
-strategic goal.</p>
-<p>OKRs define success and set <u>“what”</u> needs to be accomplished,
-not <u>“how”</u> it should be accomplished. This allows for teams to
-create initiatives that can meet the aggressive key results, the beauty
-being that teams will need to think differently and out-of-the-box to
-create really innovative solutions that can rise to these hard
-targets.</p>
-<p>If implemented well, OKRs could be the answer to many organisations
-looking to embed innovation as part of its culture. The only thing that
-remains is creating an ecosystem of knowledge and partners, and a
-recognition and rewards system that can empower, inspire and allow staff
-to try, fail, learn and innovate to their best!</p>
+<pre class="r"><code>packages &lt;- c(&quot;tidyverse&quot;, &quot;gapminder&quot;, &quot;plotly&quot;) # Include packages of interest
+packages_not_installed &lt;- !(packages %in% installed.packages())
+
+if(sum(packages_not_installed) &gt; 0) { # Install missing packages
+  install.packages(
+    packages[packages_not_installed])
+}
+
+purrr::walk(.x = packages, ~require(package = .x, character.only = TRUE)) # Load missing packages</code></pre>
+<pre><code>## Loading required package: tidyverse</code></pre>
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   3.5.2     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+## ✔ purrr     1.0.4     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors
+## Loading required package: gapminder
+## 
+## Loading required package: plotly
+## 
+## 
+## Attaching package: &#39;plotly&#39;
+## 
+## 
+## The following object is masked from &#39;package:ggplot2&#39;:
+## 
+##     last_plot
+## 
+## 
+## The following object is masked from &#39;package:stats&#39;:
+## 
+##     filter
+## 
+## 
+## The following object is masked from &#39;package:graphics&#39;:
+## 
+##     layout</code></pre>
+<pre class="r"><code>data(&quot;gapminder&quot;, package = &#39;gapminder&#39;) # Load the gapminder dataset</code></pre>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p><em>Gapminder.org</em> is a non-profit organisation whose mission is
+to rid the world of global misconceptions. It does this in 3 ways:</p>
+<ol style="list-style-type: decimal">
+<li>Asking thousand of fact-based questions to the public in many
+countries to see what their view of the world is like.</li>
+<li>Cross-checking this feedback with verifiable and reliable data
+sources such as the UN to identify the most common misconceptions where
+people’s ideas differ from reality.</li>
+<li>Communicate the facts, and help one upgrade their worldview.</li>
+</ol>
+<p>Visit their website for more information and how you can
+participate.</p>
+</div>
+<div id="purpose-of-this-exercise" class="section level2">
+<h2>Purpose of this exercise</h2>
+<p>I shall be using the gapminder dataset to build a couple of
+visualisations as a means of not only practicing my skillsets but also
+to answer some interesting questions.</p>
+</div>
+<div id="overview-of-the-data" class="section level2">
+<h2>Overview of the data</h2>
+<p>The gapminder dataset consists of `1704 observations and 6
+variables.</p>
+<pre class="r"><code>glimpse(gapminder)</code></pre>
+<pre><code>## Rows: 1,704
+## Columns: 6
+## $ country   &lt;fct&gt; &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, &quot;Afghanistan&quot;, …
+## $ continent &lt;fct&gt; Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, Asia, …
+## $ year      &lt;int&gt; 1952, 1957, 1962, 1967, 1972, 1977, 1982, 1987, 1992, 1997, …
+## $ lifeExp   &lt;dbl&gt; 28.801, 30.332, 31.997, 34.020, 36.088, 38.438, 39.854, 40.8…
+## $ pop       &lt;int&gt; 8425333, 9240934, 10267083, 11537966, 13079460, 14880372, 12…
+## $ gdpPercap &lt;dbl&gt; 779.4453, 820.8530, 853.1007, 836.1971, 739.9811, 786.1134, …</code></pre>
+</div>
 
 
 
@@ -755,7 +625,7 @@ $(document).ready(function () {
     
     
       
-        © 2019 - 2024
+        © 2019 - 2025
       
        Robert J Muwanga 
     
