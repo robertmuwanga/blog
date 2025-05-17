@@ -13,19 +13,49 @@ series: []
 draft: true
 ---
 
+```{r setup}
+
+packages <- c("tidyverse", "gapminder", "plotly", "gt") # Include packages of interest
+packages_not_installed <- !(packages %in% installed.packages())
+
+if(sum(packages_not_installed) > 0) { # Install missing packages
+  install.packages(
+    packages[packages_not_installed])
+}
+
+purrr::walk(.x = packages, ~require(package = .x, character.only = TRUE)) # Load missing packages
+data("gapminder", package = 'gapminder') # Load the gapminder dataset
+
+```
+
 ## Introduction
 
-*Gapminder.org* is a non-profit organisation whose mission is to rid the world of global misconceptions. As part of its mission, 
+*Gapminder.org* is a non-profit organisation whose mission is to rid the world of global misconceptions. It does this in 3 ways:
 
-## The data
+1. Asking thousand of fact-based questions to the public in many countries to see what their view of the world is like.
+2. Cross-checking this feedback with verifiable and reliable data sources such as the UN to identify the most common misconceptions where people's ideas differ from reality.
+3. Communicate the facts, and help one upgrade their worldview.
+
+Visit their website for more information and how you can participate.
+
+## Purpose of this exercise
+
+I shall be using the gapminder dataset to build a couple of visualisations as a means of not only practicing my skillsets but also to answer some interesting questions.
+
+## Overview of the data
+
+The gapminder dataset consists of `r nrow(gapminder)` observations and `r ncol(gapminder)` variables. 
 
 ```{r}
-library(tidyverse)
-library(gapminder)
-
-glimpse(gapminder)
-gapminder %>% 
-  group_by(country) %>%
-  summarize('Avg.Pop' = mean(pop))
-
+gapminder |> 
+  gt() |>
+  fmt_number(columns = lifeExp:gdpPercap, drop_trailing_zeros = TRUE) |>
+  cols_label(
+    country = "Country", 
+    continent = "Continent", 
+    year = "Year", 
+    lifeExp = "Average Life Expectancy (Years)", 
+    pop = "Population", 
+    gdpPercap = "GDP Per Capita (US$)"
+  )
 ```
